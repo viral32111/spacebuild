@@ -266,7 +266,6 @@ function CAF2.Start()
 	CAF2.StartingUp = true
 	net.Start("CAF_Start_true")
 	net.Broadcast()
-	CAF2.AddServerTag("CAF")
 	for level, tab in pairs(addonlevel) do
 		print("Loading Level "..tostring(level).." Addons\n")
 		for k, v in pairs(tab) do
@@ -447,29 +446,6 @@ function CAF2.POPUP(ply, msg, location, color, displaytime)
 			net.WriteUInt(color.a, 8)
 			net.WriteUInt(displaytime, 16)
 		net.Send(ply)
-	end
-end
-
-local servertags = nil;
-function CAF2.AddServerTag(tag)
-	if not servertags or not CAF2.StartingUp then
-		servertags = GetConVarString("sv_tags")
-	end
-	if servertags == nil then
-		RunConsoleCommand("sv_tags", tag)
-	elseif not string.find(servertags, tag) then
-		servertags = servertags .. ","..tag
-		RunConsoleCommand("sv_tags", servertags)
-	end
-end
-
-function CAF2.RemoveServerTag(tag)
-	if not servertags or not CAF2.StartingUp then
-		servertags = GetConVarString("sv_tags")
-	end
-	if servertags then
-		servertags = string.Replace(servertags, ","..tag, "" )
-		RunConsoleCommand("sv_tags", servertags)
 	end
 end
 
