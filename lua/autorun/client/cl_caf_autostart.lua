@@ -85,7 +85,7 @@ local function OnAddonDestruct(name)
 				CAF2.WriteToDebugFile("CAF_Hooks", "OnAddonDestruct Error " .. err .. "\n")
 			end
 		end
-		CAF2.RefreshMainMenu();
+		--CAF2.RefreshMainMenu();
 	end
 end
 
@@ -113,7 +113,7 @@ local function OnAddonConstruct(name)
 				CAF2.WriteToDebugFile("CAF_Hooks", "OnAddonConstruct Error " .. err .. "\n")
 			end
 		end
-		CAF2.RefreshMainMenu();
+		--CAF2.RefreshMainMenu();
 	end
 end
 
@@ -293,7 +293,7 @@ function AddPopup(message, location, color, displaytime)
 	ShowNextPopupMessage();
 end
 
-local function GetHelpPanel(frame)
+--[[local function GetHelpPanel(frame)
 	local panel = vgui.Create("DPanel", frame)
 	panel:StretchToParent( 6, 80, 6, 6 )
 	
@@ -430,11 +430,11 @@ local function GetClientMenu(contentpanel)
 	x = x - lbl:GetWide() - 5
 	--Other options here]]
 	
-	panel:SetSize(contentpanel:GetWide(), y + 10);
+	--[[panel:SetSize(contentpanel:GetWide(), y + 10);
 	return panel;
-end
+end]]
 
-local function AddCAFInfoToStatus(List)
+--[[local function AddCAFInfoToStatus(List)
 	
 	
 	local descriptiontxt = nil
@@ -531,7 +531,7 @@ local function AddCAFInfoToStatus(List)
 	List:AddItem(cat)
 end
 
-local function GetStatusPanel(frame)
+--[[local function GetStatusPanel(frame)
 	local panel = vgui.Create("DPanel", frame)
 	panel:StretchToParent( 6, 36, 6, 6 )
 	local List = vgui.Create("DPanelList", panel)
@@ -630,7 +630,7 @@ local function GetStatusPanel(frame)
 				--[[if iteration == 1 then
 					cat:SetExpanded(true)
 				else]]
-					cat:SetExpanded(false)
+					--[[cat:SetExpanded(false)
 				--end
 				List:AddItem(cat)
 			end
@@ -694,7 +694,7 @@ end
 
 local MainFrame = nil;
 
-function CAF2.CloseMainMenu()
+--[[function CAF2.CloseMainMenu()
 	if MainFrame then MainFrame:Close() end
 end
 
@@ -723,10 +723,10 @@ function CAF2.OpenMainMenu()
 	ContentPanel:AddSheet( CAF.GetLangVar("About"), GetAboutPanel(ContentPanel), "icon16/group.png", true, true )
 	MainFrame:MakePopup()
 end
-concommand.Add("Main_CAF_Menu", CAF2.OpenMainMenu)
+concommand.Add("Main_CAF_Menu", CAF2.OpenMainMenu)]]
 
 --Panel
-local function BuildMenu( Panel )
+--[[local function BuildMenu( Panel )
 	Panel:ClearControls( )
 	Panel:AddControl( "Header", { Text = "Custom Addon Framework", Description   = "Custom Addon Framework" }  )
 	Panel:AddControl( "Button", {
@@ -734,12 +734,12 @@ local function BuildMenu( Panel )
 		Text = "Custom Addon Framework",
 		Command = "Main_CAF_Menu"
 		} )
-end
+end]]
 
-local function CreateMenu( )
+--[[local function CreateMenu( )
 	spawnmenu.AddToolMenuOption( "Custom Addon Framework", "Custom Addon Framework", "MainInfoMenu", "Main Info Menu", "", "", BuildMenu, { } )
 end
-hook.Add( "PopulateToolMenu", "Caf_OpenMenu_AddMenu", CreateMenu )
+hook.Add( "PopulateToolMenu", "Caf_OpenMenu_AddMenu", CreateMenu )]]
 
 function CAF2.POPUP(msg, location, color, displaytime)
 	if msg then
