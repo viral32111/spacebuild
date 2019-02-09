@@ -756,7 +756,6 @@ function SB.__Construct()
 		for k, v in pairs(player.GetAll()) do
 			PlayerInitialSpawn(v);
 		end
-		CAF.AddServerTag("SB")
 		status = true;
 		return true
 	end
