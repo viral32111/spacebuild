@@ -1,63 +1,11 @@
-[![Issue Count](https://codeclimate.com/github/spacebuild/spacebuild/badges/issue_count.svg)](https://codeclimate.com/github/spacebuild/spacebuild)
-
 Spacebuild
 ==========
 
-[Garry's Mod][garrysmod] Spacebuild Project
+viral32111's custom version of the popular [Spacebuild](https://github.com/spacebuild/spacebuild) addon for Garry's Mod.
 
-Facepunch Page: [Located Here][facepunch]
+This is just the code, resources have been moved to a seperate repository, located [here](https://github.com/viral32111/spacebuild-resources).
 
-Discord Server: [Located Here][discord]
-
-The Spacebuild Expansion Pack is not part of this repository. It is [Located Here](https://github.com/spacebuild/sbep)
-
-*Please do not upload to the workshop, use the* **Official** *workshop version, this repository will be synced with it.*
-
-# Build Status
-* Master [![Build Status](https://travis-ci.org/spacebuild/spacebuild.svg?branch=master)](https://travis-ci.org/spacebuild/spacebuild)
-* SB2 [![Build Status](https://travis-ci.org/spacebuild/spacebuild.svg?branch=sb2)](https://travis-ci.org/spacebuild/spacebuild)
-* SB2.5 [![Build Status](https://travis-ci.org/spacebuild/spacebuild.svg?branch=sb2.5)](https://travis-ci.org/spacebuild/spacebuild)
-* SB3 [![Build Status](https://travis-ci.org/spacebuild/spacebuild.svg?branch=sb3)](https://travis-ci.org/spacebuild/spacebuild)
-* SB4 [![Build Status](https://travis-ci.org/spacebuild/spacebuild.svg?branch=sb4)](https://travis-ci.org/spacebuild/spacebuild)
-
-# Status
-
-    **Master branch, current release version (sb3)
-
-    **Spacebuild 3** - Current Working Version
-
-    **Official** Workshop version: http://steamcommunity.com/sharedfiles/filedetails/?id=693838486
-
-    **Spacebuild 2** - Not Supported Anymore
-
-    **Spacebuild 4** - WiP ( Yes its still in development )
-
-
-# Contributors
-    @snakesvx
-    @generalwrex
-    @X-Coder
-    @CaveeJohnson
-   
-   
-     If you would like to help just drop a pull request in with your changes! 
-     Please try to keep your coding clean!
-
-# Workshop Installation
-
-Spacebuild 3 is available via the Steam Workshop! Go to [its Workshop page][workshop] and press `Subscribe`, and it will automatically appear in Garry's Mod.
-
-# Manual Installation
-
-How to Tortoise Git + Clone/Pull: http://steamcommunity.com/groups/spacebuild/discussions/0/144513670980243163/
-
-Simply clone this repository into your `addons` folder:
-
-    cd "%programfiles(x86)%/Steam/SteamApps/common/GarrysMod/garrysmod/addons"
-    git clone https://github.com/spacebuild/spacebuild.git spacebuild
-
-# License
-
+## License
 Copyright 2009-2016 SB Dev Team
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
