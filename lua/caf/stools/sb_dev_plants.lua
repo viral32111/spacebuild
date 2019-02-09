@@ -1,5 +1,5 @@
-TOOL.Category = "Life Support"
-TOOL.Name = CAF.GetLangVar("#Dev Plants")
+TOOL.Category = "Admin"
+TOOL.Name = "Oxygen Refresher"
 
 TOOL.DeviceName = "Dev Plant"
 TOOL.DeviceNamePlural = "Dev Plants"
@@ -17,62 +17,58 @@ TOOL.AdminOnly = true
 
 CAFToolSetup.SetLang(CAF.GetLangVar("sb_dev_plants_title"), CAF.GetLangVar("sb_dev_plants_desc"), CAF.GetLangVar("sb_dev_plants_desc2"))
 
-function TOOL.EnableFunc()
-    local SB = CAF.GetAddon("Spacebuild")
-    if not SB or not SB.GetStatus() then
-        return false;
-    end
-    return true;
-end
-
 TOOL.ExtraCCVars = {
-    rate = 0,
+	rate = 0,
 }
 
+function TOOL.EnableFunc()
+	local SB = CAF.GetAddon("Spacebuild")
+	if (not SB) or (not SB.GetStatus()) then
+		return false
+	end
+
+	return true
+end
+
 function TOOL.ExtraCCVarsCP(tool, panel)
-    panel:NumSlider(CAF.GetLangVar("O2 Refresh Rate"), "sb_dev_plants_rate", 0, 10000, 0)
+	panel:NumSlider("Refresh Rate", "sb_dev_plants_rate", 1, 10000, 1)
 end
 
 function TOOL:GetExtraCCVars()
-    local Extra_Data = {}
-    Extra_Data.rate = self:GetClientNumber("rate")
-    return Extra_Data
+	local extraData = {}
+	extraData.rate = self:GetClientNumber("rate")
+	return extraData
 end
 
 local function gas_generator_func(ent, type, sub_type, devinfo, Extra_Data, ent_extras)
-    local volume_mul = 1
-    local base_volume = 4084
-    local base_mass = 200
-    local base_health = 600
-    local phys = ent:GetPhysicsObject()
-    if phys:IsValid() and phys.GetVolume then
-        local vol = phys:GetVolume()
-        vol = math.Round(vol)
-        volume_mul = vol / base_volume
-    end
-    ent:SetRate(Extra_Data.rate)
-    local mass = math.Round(base_mass * volume_mul)
-    ent.mass = mass
-    local maxhealth = math.Round(base_health * volume_mul)
-    return mass, maxhealth
+	local volume_mul = 1
+	local base_volume = 4084
+	local base_mass = 200
+	local base_health = 600
+	local phys = ent:GetPhysicsObject()
+	if phys:IsValid() and phys.GetVolume then
+		local vol = phys:GetVolume()
+		vol = math.Round(vol)
+		volume_mul = vol / base_volume
+	end
+	ent:SetRate(Extra_Data.rate)
+	local mass = math.Round(base_mass * volume_mul)
+	ent.mass = mass
+	local maxhealth = math.Round(base_health * volume_mul)
+	return mass, maxhealth
 end
 
 TOOL.Devices = {
-    nature_dev_tree = {
-        Name = CAF.GetLangVar("Dev Plants (Auto O2 Refresher)"),
-        type = "nature_dev_tree",
-        class = "nature_dev_tree",
-        func = gas_generator_func,
-        devices = {
-            default = {
-                Name = "Block Plant",
-                model = "models/ce_ls3additional/plants/plantfull.mdl",
-            },
-        },
-    },
+	nature_dev_tree = {
+		Name = CAF.GetLangVar("Dev Plants (Auto O2 Refresher)"),
+		type = "nature_dev_tree",
+		class = "nature_dev_tree",
+		func = gas_generator_func,
+		devices = {
+			default = {
+				Name = "Block Plant",
+				model = "models/ce_ls3additional/plants/plantfull.mdl",
+			},
+		},
+	},
 }
-
-
-	
-	
-	

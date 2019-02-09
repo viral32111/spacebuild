@@ -1,6 +1,7 @@
 TOOL.Name = "Resource Debugger"
 TOOL.Tab = "Spacebuild"
-TOOL.Category = "Debugging/Admin"
+TOOL.Category = "Admin"
+TOOL.AdminOnly = true
 
 if (CLIENT) then
 	language.Add("tool.rd3_resdebug.name", "Resource Debugger")
