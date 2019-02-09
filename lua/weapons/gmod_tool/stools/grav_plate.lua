@@ -3,7 +3,9 @@ TOOL.Category = 'Life Support'
 TOOL.Name = '#Gravity Plating'
 TOOL.Command = nil
 TOOL.ConfigName = ''
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+if (CLIENT) then
+	TOOL.Tab = "Spacebuild"
+end
 
 -- Add Default Language translation (saves adding it to the txt files)
 if ( CLIENT ) then

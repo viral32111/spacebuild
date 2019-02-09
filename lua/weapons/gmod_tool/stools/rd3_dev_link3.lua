@@ -8,7 +8,9 @@ TOOL.Category	= 'Resource Distribution'
 TOOL.Name		= '#Auto Link Tool'
 TOOL.Command	= nil
 TOOL.ConfigName	= ''
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+if (CLIENT) then
+	TOOL.Tab = "Spacebuild"
+end
 
 if ( CLIENT ) then
 	language.Add( "tool.rd3_dev_link3.name", "Auto Link Tool" )

@@ -4,7 +4,9 @@ TOOL.Mode 			= "rd3_resdebug"
 TOOL.Name			= "Res. Debuger"
 TOOL.Command		= nil
 TOOL.ConfigName		= nil
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+if (CLIENT) then
+	TOOL.Tab = "Spacebuild"
+end
 
 
 if ( CLIENT ) then

@@ -7,32 +7,34 @@ TOOL.Name = "CAF Tools Startup"
 TOOL.Command = nil
 TOOL.ConfigName = nil
 TOOL.AddToMenu = false
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+if (CLIENT) then
+	TOOL.Tab = "Spacebuild"
+end
 
 
 function TOOL:LeftClick(trace)
-    if (not trace.Entity:IsValid()) then return false end
-    if (CLIENT) then return true end
+	if (not trace.Entity:IsValid()) then return false end
+	if (CLIENT) then return true end
 
-    --for something else
+	--for something else
 
-    return true
+	return true
 end
 
 function TOOL:RightClick(trace)
-    if (not trace.Entity:IsValid()) then return false end
-    if (CLIENT) then return true end
+	if (not trace.Entity:IsValid()) then return false end
+	if (CLIENT) then return true end
 
-    --for something else
+	--for something else
 
-    return true
+	return true
 end
 
 function TOOL:Reload(trace)
-    if (not trace.Entity:IsValid()) then return false end
-    if (CLIENT) then return true end
+	if (not trace.Entity:IsValid()) then return false end
+	if (CLIENT) then return true end
 
-    --for something else
+	--for something else
 
-    return true
+	return true
 end

@@ -4,7 +4,9 @@ TOOL.Name		= "#Advanced Link Tool"
 TOOL.Command		= nil
 TOOL.ConfigName	= ""
 
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+if (CLIENT) then
+	TOOL.Tab = "Spacebuild"
+end
 
 if ( CLIENT ) then
 	language.Add( "tool.rd3_dev_link_adv.name", "Advanced Link Tool" )
