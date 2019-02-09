@@ -128,7 +128,6 @@ function LS.__Construct()
 	hook.Add( "PlayerSpawn", "LS_Core_ResetSpawnFunc", LSResetSpawnFunc )
 	CAF.AddHook("think3", PlayerLSThink)
 	CAF.AddHook("OnAddonDestruct", AddonDisabled)
-	CAF.AddServerTag("LSC")
 	status = true
 	return true
 end
