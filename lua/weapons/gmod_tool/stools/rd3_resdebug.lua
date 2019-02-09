@@ -1,37 +1,35 @@
+TOOL.Name = "Resource Debugger"
+TOOL.Tab = "Spacebuild"
+TOOL.Category = "Debugging/Admin"
 
-TOOL.Category		= "Resource Distribution"
-TOOL.Mode 			= "rd3_resdebug"
-TOOL.Name			= "Res. Debuger"
-TOOL.Command		= nil
-TOOL.ConfigName		= nil
 if (CLIENT) then
-	TOOL.Tab = "Spacebuild"
+	language.Add("tool.rd3_resdebug.name", "Resource Debugger")
+	language.Add("tool.rd3_resdebug.desc", "Spams an entity's resource table to the console.")
+	language.Add("tool.rd3_resdebug.0", "Primary: Serverside | Secondary: Clientside")
 end
 
+function TOOL:LeftClick(trace)
+	if (trace.Entity == nil) or (CLIENT) then return false end
 
-if ( CLIENT ) then
-	language.Add( "tool.rd3_resdebug.name",	"RD Resource Debuger" )
-	language.Add( "tool.rd3_resdebug.desc",	"Spams the ent's resource table to the console, Left Click = serverside, Right click = Clientside" )
-	language.Add( "tool.rd3_resdebug.0", "Click an RD3 Ent" )
-end
+	if (not self:GetOwner():IsAdmin()) then
+		self:GetOwner():ChatPrint("This tool is admin only!")
+		return false
+	end
 
-function TOOL:LeftClick( trace )
-	if ( !trace.Entity:IsValid() ) then return false end
-	if (CLIENT) then return true end
 	CAF.GetAddon("Resource Distribution").PrintDebug(trace.Entity)
+
 	return true
 end
 
 function TOOL:RightClick( trace )
-	if ( !trace.Entity:IsValid() ) then return false end
-	if (SERVER or not IsFirstTimePredicted()) then return true end
-	CAF.GetAddon("Resource Distribution").PrintDebug(trace.Entity)
-	return true
-end
+	if (trace.Entity == nil) or (SERVER) then return false end
 
-function TOOL:Reload( trace )
-	if ( !trace.Entity:IsValid() ) then return false end
-	if (CLIENT) then return true end
-	--for something else
+	if (not self:GetOwner():IsAdmin()) then
+		self:GetOwner():ChatPrint("This tool is admin only!")
+		return false
+	end
+
+	CAF.GetAddon("Resource Distribution").PrintDebug(trace.Entity)
+
 	return true
 end
