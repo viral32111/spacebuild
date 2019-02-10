@@ -6,7 +6,7 @@ viral32111's custom version of the popular [Spacebuild](https://github.com/space
 This is just the code, resources have been moved to a seperate repository, located [here](https://github.com/viral32111/spacebuild-resources).
 
 ## License
-Copyright 2009-2016 SB Dev Team
+Copyright 2009-2019 SB Dev Team
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
