@@ -1,5 +1,5 @@
 TOOL.Category = "Resource Distribution"
-TOOL.Name = "#Resource Pumps"
+TOOL.Name = "Resource Pump"
 
 TOOL.DeviceName = "Resource Pump"
 TOOL.DeviceNamePlural = "Resource Pumps"
