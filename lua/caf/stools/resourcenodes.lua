@@ -103,6 +103,14 @@ local function resource_node_func(ent, type, sub_type, devinfo, extra_data, ent_
 end
 
 TOOL.Devices = {
+	--[[
+	Replace models with:
+	- models/snakesvx/node_s.mdl
+	 - models/snakesvx/resource_node_small.mdl
+	 - models/snakesvx/resource_node_medium.mdl
+	 - models/snakesvx/resource_node_large.mdl
+	 ]]
+	 
 	-- Range: 128
 	resource_node_128 = {
 		Name = "Tiny (128)",

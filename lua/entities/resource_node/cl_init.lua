@@ -31,7 +31,7 @@ function ENT:DoNormalDraw( bDontDrawModel )
 			end
 		end
 	end]]
-	local mode = 2
+	local mode = 0
 	local rd_overlay_dist = 512
 	if RD_OverLay_Distance then
 		if RD_OverLay_Distance.GetInt then

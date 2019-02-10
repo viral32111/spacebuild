@@ -1,5 +1,5 @@
 TOOL.Category = "Resource Distribution"
-TOOL.Name = "#Resource Valves"
+TOOL.Name = "Resource Valve"
 
 TOOL.DeviceName = "Resource Valve"
 TOOL.DeviceNamePlural = "Resource Valves"
