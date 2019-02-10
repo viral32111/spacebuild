@@ -26,10 +26,7 @@ end
 end]]
 
 function ENT:Repair()
-	self:EmitSound("buttons/button4.wav")
-	print(self:Health() .. "/" .. self:GetMaxHealth())
 	self:SetHealth(self:GetMaxHealth())
-	print(self:Health() .. "/" .. self:GetMaxHealth())
 end
 
 function ENT:SetRange(range)
