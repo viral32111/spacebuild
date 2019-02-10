@@ -1,5 +1,5 @@
 Spacebuild
-Copyright (C) 2012-2014 Spacebuild Development Team
+Copyright (C) 2012-2019 Spacebuild Development Team
 
 #### Spacebuild contains contributions from the following people:
 * [SnakeSVx](https://steamcommunity.com/id/SnakeSVx)
