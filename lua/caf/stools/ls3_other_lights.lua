@@ -1,5 +1,5 @@
 TOOL.Category = "Life Support"
-TOOL.Name = "#Special Devices - Lights"
+TOOL.Name = "Lighting"
 
 TOOL.DeviceName = "Special Device"
 TOOL.DeviceNamePlural = "Special Devices"
@@ -14,7 +14,7 @@ TOOL.Limited = true
 TOOL.LimitName = "ls3_other_lights"
 TOOL.Limit = 10
 
-CAFToolSetup.SetLang("Life Support Special Light Devices", "Create Special Light Devices attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("Lighting", "Create Special Light Devices attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 function TOOL.EnableFunc()
     if not CAF then

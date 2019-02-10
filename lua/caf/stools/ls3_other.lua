@@ -1,5 +1,5 @@
 TOOL.Category = "Life Support"
-TOOL.Name = "#Special Devices"
+TOOL.Name = "Info Screens"
 
 TOOL.DeviceName = "Special Device"
 TOOL.DeviceNamePlural = "Special Devices"
