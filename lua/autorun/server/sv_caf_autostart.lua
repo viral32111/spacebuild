@@ -394,20 +394,6 @@ local kickgarry = false;
 	This function will update the Client with all active addons
 ]]
 function CAF2.PlayerSpawn(ply)
-	if kickgarry then
-		pcall(function()
-			if ply:SteamID() == "STEAM_0:1:7099" then
-				ply:Kick("We don't want you here!");
-			end
-		end);
-	end
-	
-	ply:ChatPrint("This server is using the Custom Addon Framework\n")
-	ply:ChatPrint("Report any bugs during the beta at https://github.com/spacebuild/spacebuild/issues\n")
-	
-	ply:ChatPrint("\n\nIf you have any suggestions for future versions of CAF, SB, LS, RD, ... please report them at https://github.com/spacebuild/spacebuild/issues\n\n")
-	ply:ChatPrint("\n\nNOTE: If you encounter any issues with RD3.1 (alpha) report them at https://github.com/spacebuild/spacebuild/issues\n\n")
-	
 	timer.Simple(1, function()
 		if not IsValid(ply) then return end
 		
