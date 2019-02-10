@@ -14,7 +14,7 @@ Copyright (C) 2012-2019 Spacebuild Development Team
 * Tingle1337
 * hopkinskong
 * tjohnman
-* generalwrex
+* [generalwrex](https://steamcommunity.com/id/generalwrex)
 * natrim
 * CerusVI
 * foxrox (Slyfo)
