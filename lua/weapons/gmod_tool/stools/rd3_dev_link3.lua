@@ -4,7 +4,7 @@
 --dev link stool
 --TOOL			= ToolObj:Create()
 TOOL.Mode		= "rd3_dev_link3"
-TOOL.Category	= 'Resource Distribution'
+TOOL.Category	= 'Link Tools'
 TOOL.Name		= '#Auto Link Tool'
 TOOL.Command	= nil
 TOOL.ConfigName	= ''

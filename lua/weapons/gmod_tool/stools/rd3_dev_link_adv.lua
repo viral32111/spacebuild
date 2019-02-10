@@ -1,5 +1,5 @@
 TOOL.Mode		= "rd3_dev_link_adv"
-TOOL.Category		= "Resource Distribution"
+TOOL.Category		= "Link Tools"
 TOOL.Name		= "#Advanced Link Tool"
 TOOL.Command		= nil
 TOOL.ConfigName	= ""
