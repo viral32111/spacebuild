@@ -3,7 +3,7 @@ ENT.Type = "anim"
 ENT.Base = "base_gmodentity"
 
 ENT.PrintName = "Resource Distribution Entity"
-ENT.Author = "Thresher and TAD2020"
+ENT.Author = "Thresher, TAD2020 and viral32111"
 ENT.Purpose = "Base for all RD Sents"
 ENT.Instructions = ""
 

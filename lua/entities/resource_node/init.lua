@@ -5,7 +5,7 @@ AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
 function ENT:Initialize()
-	--self.BaseClass.Initialize(self) --use this in all ents
+	self.BaseClass.Initialize(self)
 	self:PhysicsInit( SOLID_VPHYSICS )
 	self:SetMoveType( MOVETYPE_VPHYSICS )
 	self:SetSolid( SOLID_VPHYSICS )
@@ -14,10 +14,6 @@ function ENT:Initialize()
 	self:SetNetworkedInt( "overlaymode", 2 )
 	self.range = self.range or 512
 	self:SetNetworkedInt( "range", self.range )
-	-- Will add the ability to the node to store 1000 units of energy
-	--CAF.GetAddon("Resource Distribution").AddNetResource(self.netid, "energy", 1000)
-	-- Will Add the ability to the node to store 1000 units of water, with the startup amount at 500 units
-	--CAF.GetAddon("Resource Distribution").AddNetResource(self.netid, "water", 1000, 500)
 end
 
 function ENT:SetCustomNodeName(name)
