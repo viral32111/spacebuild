@@ -250,11 +250,11 @@ local function ShowNextPopupMessage()
 		if displaypopups[v] == nil and popups[v] and table.Count(popups[v]) > 0 then
 			local obj = popups[v][1];
 			table.remove(popups[v], 1);
-			if ply and ply.ChatPrint then
+			--[[if ply and ply.ChatPrint then
 				ply:ChatPrint(obj.message.."\n")
 			else
 				Msg(obj.message.."\n")
-			end
+			end]]
 			displaypopups[v] = obj;
 			timer.Simple(obj.time, function() ClearPopup(obj) end);
 		end
