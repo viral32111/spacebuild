@@ -37,11 +37,33 @@ function CAFToolSetup.BaseLang()
 	cleanup.Register(TOOL.Mode)
 end
 
-function CAFToolSetup.SetLang( s_cname, s_cdesc, s_click )
+function CAFToolSetup.SetLang(s_cname, s_cdesc, s_click)
 	if SERVER then return end
 	language.Add( "tool."..TOOL.Mode..".name", s_cname or TOOL.Name or "" )
 	language.Add( "tool."..TOOL.Mode..".desc", s_cdesc or "" )
 	language.Add( "tool."..TOOL.Mode..".0", s_click or "" )
+end
+
+function CAFToolSetup.SetupLanguage(title, description, leftclick, rightclick, reload)
+	if (SERVER) then return end
+
+	language.Add("tool." .. TOOL.Mode ..".name", title)
+	language.Add("tool." .. TOOL.Mode ..".desc", description)
+
+	if (leftclick != nil) then
+		language.Add("tool." .. TOOL.Mode ..".left", leftclick)
+	end
+	
+	if (rightclick != nil) then
+		language.Add("tool." .. TOOL.Mode ..".right", right)
+	end
+
+	if (reload != nil) then
+		language.Add("tool." .. TOOL.Mode ..".reload", reload)
+	end
+
+	-- Maybe add support for after left clicking langs. 
+	-- https://github.com/Facepunch/garrysmod/blob/0479c8a058a3eb0c424976bd59393e922c81d4b2/garrysmod/resource/localization/en/tool.properties#L41
 end
 
 function CAFToolSetup.MaxLimit()
