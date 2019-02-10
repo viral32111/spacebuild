@@ -1,18 +1,21 @@
 CAFToolSetup = {}
 
-function CAFToolSetup.open( s_toolmode )
-	if TOOL then WireToolSetup.close() end
-	TOOL				= ToolObj:Create()
-	TOOL.Mode			= s_toolmode
-	TOOL.Command		= nil
-	TOOL.ConfigName		= ""
-	TOOL.LeftClick		= CAFTool.LeftClick
-	TOOL.RightClick		= CAFTool.RightClick
-	if not TOOL.NoRepair then
-        TOOL.Reload = CAFTool.Reload
-    end
-	TOOL.UpdateGhost	= CAFTool.UpdateGhost
-	TOOL.Think			= CAFTool.Think
+function CAFToolSetup.open(s_toolmode)
+	if (TOOL) then
+		WireToolSetup.close()
+	end
+
+	TOOL = ToolObj:Create()
+	TOOL.Mode = s_toolmode
+	TOOL.LeftClick = CAFTool.LeftClick
+	TOOL.RightClick = CAFTool.RightClick
+
+	if (not TOOL.NoRepair) then
+		TOOL.Reload = CAFTool.Reload
+	end
+
+	TOOL.UpdateGhost = CAFTool.UpdateGhost
+	TOOL.Think = CAFTool.Think
 	
 	TOOL.Tab = "Spacebuild"
 end
@@ -37,6 +40,7 @@ function CAFToolSetup.BaseLang()
 	cleanup.Register(TOOL.Mode)
 end
 
+-- This is old! Remove me!
 function CAFToolSetup.SetLang(s_cname, s_cdesc, s_click)
 	if SERVER then return end
 	language.Add( "tool."..TOOL.Mode..".name", s_cname or TOOL.Name or "" )
@@ -50,12 +54,20 @@ function CAFToolSetup.SetupLanguage(title, description, leftclick, rightclick, r
 	language.Add("tool." .. TOOL.Mode ..".name", title)
 	language.Add("tool." .. TOOL.Mode ..".desc", description)
 
+	TOOL.Information = {
+		{name = "left", stage = 0},
+		-- {name = "left_1", stage = 1, op = 1},
+		{name = "right", stage = 0},
+		-- {name = "right_1", stage = 1, op = 2},
+		{name = "reload"}
+	}
+
 	if (leftclick != nil) then
 		language.Add("tool." .. TOOL.Mode ..".left", leftclick)
 	end
 	
 	if (rightclick != nil) then
-		language.Add("tool." .. TOOL.Mode ..".right", right)
+		language.Add("tool." .. TOOL.Mode ..".right", rightclick)
 	end
 
 	if (reload != nil) then
@@ -464,7 +476,7 @@ function CAFTool.LeftClick( self, trace )
 	return true
 end
 
-function CAFTool.RightClick( self, trace )
+function CAFTool.RightClick(self, trace)
 	if trace.HitNonWorld and self.CanUpdateClassList and table.HasValue( self.CanUpdateClassList, trace.Entity:GetClass()) then return false end
 	if CLIENT then return true end
 	
@@ -481,9 +493,10 @@ function CAFTool.Reload( self, trace )
 	if not trace.Entity:IsValid() then return false end
 	if CLIENT then return true end
 	if trace.Entity.Repair == nil then
-		self:GetOwner():SendLua("GAMEMODE:AddNotify('Object cannot be repaired!', NOTIFY_GENERIC, 7); surface.PlaySound(\"ambient/water/drip"..math.random(1, 4)..".wav\")")
+		self:GetOwner():SendLua('notification.AddLegacy("This device cannot be repaired!", NOTIFY_ERROR, 7) surface.PlaySound("buttons/button10.wav")')
 		return
 	end
+	self:GetOwner():SendLua('notification.AddLegacy("The device has been repaired.", NOTIFY_GENERIC, 7) surface.PlaySound("buttons/button4.wav")')
 	trace.Entity:Repair()
 	return true
 end
