@@ -1,8 +1,8 @@
 TOOL.Category = "Life Support"
-TOOL.Name = "#Special Devices"
+TOOL.Name = "LS Info Screen"
 
-TOOL.DeviceName = "Special Device"
-TOOL.DeviceNamePlural = "Special Devices"
+TOOL.DeviceName = "LS Info Screen"
+TOOL.DeviceNamePlural = "LS Info Screens"
 TOOL.ClassName = "ls3_other"
 
 TOOL.DevSelect = true
@@ -14,7 +14,7 @@ TOOL.Limited = true
 TOOL.LimitName = "ls3_other"
 TOOL.Limit = 30
 
-CAFToolSetup.SetLang("Life Support Special Devices", "Create Special Devices attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("Life Support Info Screen", "Create a LS Info Screen attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 function TOOL.EnableFunc()
     if not CAF then

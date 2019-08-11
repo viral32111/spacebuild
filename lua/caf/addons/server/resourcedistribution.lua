@@ -398,7 +398,6 @@ function RD.__Construct()
 	for k, ply in pairs(player.GetAll( )) do
 		SendEntireNetWorkToClient(ply)
 	end
-	CAF.AddServerTag("RD")
 	status = true
 	return true
 end

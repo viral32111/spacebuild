@@ -1,8 +1,8 @@
 TOOL.Category = "Resource Distribution"
-TOOL.Name = "#Resource Valves"
+TOOL.Name = "Valve"
 
-TOOL.DeviceName = "Resource Valve"
-TOOL.DeviceNamePlural = "Resource Valves"
+TOOL.DeviceName = "Valve"
+TOOL.DeviceNamePlural = "Valves"
 TOOL.ClassName = "valves"
 
 TOOL.DevSelect = true
@@ -14,7 +14,7 @@ TOOL.Limited = true
 TOOL.LimitName = "valves"
 TOOL.Limit = 10
 
-CAFToolSetup.SetLang("RD Resource Valves", "Create Resource Valves attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("Resource Valve", "Create Resource Valves attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {}

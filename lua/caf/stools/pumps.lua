@@ -1,8 +1,8 @@
 TOOL.Category = "Resource Distribution"
-TOOL.Name = "#Resource Pumps"
+TOOL.Name = "Pump"
 
-TOOL.DeviceName = "Resource Pump"
-TOOL.DeviceNamePlural = "Resource Pumps"
+TOOL.DeviceName = "Pump"
+TOOL.DeviceNamePlural = "Pumps"
 TOOL.ClassName = "pumps"
 
 TOOL.DevSelect = true
@@ -14,7 +14,7 @@ TOOL.Limited = true
 TOOL.LimitName = "pumps"
 TOOL.Limit = 10
 
-CAFToolSetup.SetLang("RD Resource Pumps", "Create Resource Pumps attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("Resource Pump", "Create Resource Pumps attached to any surface.", "Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {}

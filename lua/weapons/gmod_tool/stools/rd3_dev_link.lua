@@ -4,12 +4,11 @@
 --dev link stool
 --TOOL			= ToolObj:Create()
 TOOL.Mode		= "rd3_dev_link"
-TOOL.Category		= "Resource Distribution"
+TOOL.Category	= 'Tools'
 TOOL.Name		= "#Link Tool"
 TOOL.Command		= nil
 TOOL.ConfigName	= ''
-
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+TOOL.Tab = "Custom Addon Framework"
 
 if ( CLIENT ) then
 	language.Add( "tool.rd3_dev_link.name", "Link Tool" )

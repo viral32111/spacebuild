@@ -14,7 +14,7 @@ function CAFToolSetup.open( s_toolmode )
 	TOOL.UpdateGhost	= CAFTool.UpdateGhost
 	TOOL.Think			= CAFTool.Think
 	
-	if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+	TOOL.Tab = "Custom Addon Framework"
 end
 
 function CAFToolSetup.close()

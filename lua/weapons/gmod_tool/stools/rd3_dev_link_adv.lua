@@ -1,10 +1,9 @@
 TOOL.Mode		= "rd3_dev_link_adv"
-TOOL.Category		= "Resource Distribution"
+TOOL.Category	= 'Tools'
 TOOL.Name		= "#Advanced Link Tool"
 TOOL.Command		= nil
 TOOL.ConfigName	= ""
-
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+TOOL.Tab = "Custom Addon Framework"
 
 if ( CLIENT ) then
 	language.Add( "tool.rd3_dev_link_adv.name", "Advanced Link Tool" )

@@ -7,7 +7,7 @@ TOOL.Name = "CAF Tools Startup"
 TOOL.Command = nil
 TOOL.ConfigName = nil
 TOOL.AddToMenu = false
-if (CLIENT and GetConVarNumber("CAF_UseTab") == 1) then TOOL.Tab = "Custom Addon Framework" end
+TOOL.Tab = "Custom Addon Framework"
 
 
 function TOOL:LeftClick(trace)

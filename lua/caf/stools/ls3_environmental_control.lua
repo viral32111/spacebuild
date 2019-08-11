@@ -98,13 +98,8 @@ local function environmental_control_func(ent, type, sub_type, devinfo, Extra_Da
 end
 
 local function sbCheck()
-    local SB = CAF.GetAddon("Spacebuild")
-    if SB and SB.GetStatus() then
-        return true;
-    end
-    return false;
+    return true
 end
-
 
 TOOL.Devices = {
     other_dispenser = {
@@ -172,36 +167,6 @@ TOOL.Devices = {
             normal = {
                 Name = "Climate Regulator",
                 model = "models/props_combine/combine_generator01.mdl",
-                skin = 0,
-                legacy = false,
-            },
-        },
-    },
-    other_probe = {
-        Name = "Atmospheric Probes",
-        type = "other_probe",
-        class = "other_probe",
-        func = environmental_control_func,
-        EnableFunc = sbCheck,
-        devices = {
-            normal = {
-                Name = "Atmospheric Probe",
-                model = "models/props_combine/combine_mine01.mdl",
-                skin = 0,
-                legacy = false,
-            },
-        },
-    },
-    base_gravity_control = {
-        Name = "Gravity Regulators",
-        type = "base_gravity_control",
-        class = "base_gravity_control",
-        func = environmental_control_func,
-        EnableFunc = sbCheck,
-        devices = {
-            normal = {
-                Name = "Gravity Regulator",
-                model = "models/props_combine/combine_mine01.mdl",
                 skin = 0,
                 legacy = false,
             },

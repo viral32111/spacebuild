@@ -4,15 +4,9 @@
 
 include("caf/core/shared/caf_tools.lua")
 
-local usetab = CreateClientConVar("CAF_UseTab", "1", true, false)
-
-local function CAFTab()
-    if usetab:GetBool() then
-        spawnmenu.AddToolTab("Custom Addon Framework", "CAF")
-    end
-end
-
-hook.Add("AddToolMenuTabs", "CAFTab", CAFTab)
+hook.Add("AddToolMenuTabs", "CAFTab",  function()
+    spawnmenu.AddToolTab("Custom Addon Framework", "Spacebuild")
+end)
 
 function CAF_BuildCPanel(cp, toolname, listname, custom)
     cp:AddControl("CheckBox", { Label = "Don't Weld", Command = toolname .. "_DontWeld" })
@@ -22,4 +16,3 @@ function CAF_BuildCPanel(cp, toolname, listname, custom)
     cp:AddPanel(ListControl)
     ListControl:SetList(toolname, listname)
 end
-

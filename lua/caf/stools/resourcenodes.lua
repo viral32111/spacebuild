@@ -1,8 +1,8 @@
 TOOL.Category			= "Resource Distribution"
-TOOL.Name				= "#Resource Nodes"
+TOOL.Name				= "Node"
 
-TOOL.DeviceName			= "Resource Node"
-TOOL.DeviceNamePlural	= "Resource Nodes"
+TOOL.DeviceName			= "Node"
+TOOL.DeviceNamePlural	= "Nodes"
 TOOL.ClassName			= "resourcenodes"
 
 TOOL.DevSelect			= true
@@ -14,7 +14,7 @@ TOOL.Limited			= true
 TOOL.LimitName			= "resourcenodes"
 TOOL.Limit				= 30
 
-CAFToolSetup.SetLang("RD Resource Nodes","Create Resource Nodes attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("Resource Node","Create Resource Nodes attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {
