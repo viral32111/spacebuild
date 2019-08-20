@@ -1,7 +1,7 @@
 --[[ Serverside Custom Addon file Base ]]--
 --require("sb_space")
 
-player_manager.AddValidModel( "MedicMarine", "models/player/samzanemesis/MarineMedic.mdl" )
+--[[player_manager.AddValidModel( "MedicMarine", "models/player/samzanemesis/MarineMedic.mdl" )
 player_manager.AddValidModel( "SpecialMarine", "models/player/samzanemesis/MarineSpecial.mdl" )
 player_manager.AddValidModel( "OfficerMarine", "models/player/samzanemesis/MarineOfficer.mdl" )
 player_manager.AddValidModel( "TechMarine", "models/player/samzanemesis/MarineTech.mdl" )
@@ -9,7 +9,7 @@ player_manager.AddValidModel( "TechMarine", "models/player/samzanemesis/MarineTe
 util.PrecacheModel( "models/player/samzanemesis/MarineMedic.mdl" )
 util.PrecacheModel( "models/player/samzanemesis/MarineSpecial.mdl" )
 util.PrecacheModel( "models/player/samzanemesis/MarineOfficer.mdl" )
-util.PrecacheModel( "models/player/samzanemesis/MarineTech.mdl" )
+util.PrecacheModel( "models/player/samzanemesis/MarineTech.mdl" )]]
 
 local SB = {}
 
@@ -832,7 +832,7 @@ end
 	Optional
 ]]
 function SB.AddResourcesToSend()
-	resource.AddFile( "models/player/samzanemesis/MarineMedic.mdl" )
+	--[[resource.AddFile( "models/player/samzanemesis/MarineMedic.mdl" )
 	resource.AddFile( "models/player/samzanemesis/MarineSpecial.mdl" )
 	resource.AddFile( "models/player/samzanemesis/MarineOfficer.mdl" )
 	resource.AddFile( "models/player/samzanemesis/MarineTech.mdl" )
@@ -855,7 +855,7 @@ function SB.AddResourcesToSend()
 	resource.AddFile( "materials/models/player/male/back_unit/officer_back_unit.vmt")
 	resource.AddFile( "materials/models/player/male/back_unit/special_weapons_back_unit.vmt")
 	resource.AddFile( "materials/models/player/male/back_unit/special_weapons_back_unit_female.vmt")
-	resource.AddFile( "materials/models/player/male/back_unit/tech_back_unit.vmt")
+	resource.AddFile( "materials/models/player/male/back_unit/tech_back_unit.vmt")]]
 end
 CAF.RegisterAddon("Spacebuild",  SB, "1") 
 
