@@ -2,7 +2,7 @@ local net = net
 
 local net_pools = {"CAF_Addon_Construct", "CAF_Addon_Destruct", "CAF_Start_true", "CAF_Start_false", "CAF_Addon_POPUP"};
 for _, v in pairs(net_pools) do
-    print("Pooling ", v, " for net library");
+    print("Added Network String: " .. v);
     util.AddNetworkString(v)
 end
 
@@ -262,10 +262,10 @@ function CAF2.Start()
 	net.Start("CAF_Start_true")
 	net.Broadcast()
 	for level, tab in pairs(addonlevel) do
-		print("Loading Level "..tostring(level).." Addons\n")
+		print("Loading level " .. tostring(level) .. " addons...")
 		for k, v in pairs(tab) do
 			if Addons[v] then
-				print("-->", "Loading addon "..tostring(v).."\n")
+				print(" > Loading addon: " .. tostring(v))
 				if Addons[v].AddResourcesToSend then
 					local ok, err = pcall(Addons[v].AddResourcesToSend)
 					if not ok then
@@ -289,7 +289,7 @@ function CAF2.Start()
 								CAF2.WriteToDebugFile("CAF_AutoStart", "Couldn't call AutoStart for "..v .. ": " .. err .. "\n")
 							else
 								OnAddonConstruct(v)
-								print("-->", "Auto Started Addon: " .. v.."\n")
+								print(" > Auto-Started addon: " .. v)
 							end
 						elseif state then 
 							local ok2 , err = pcall(Addons[v].__Construct)
@@ -297,7 +297,7 @@ function CAF2.Start()
 								CAF2.WriteToDebugFile("CAF_Construct", "Couldn't call constructor for "..v .. ": " .. err .. "\n")
 							else
 								OnAddonConstruct(v)
-								print("-->", "Loaded addon: " .. v.."\n")
+								print(" > Loaded addon: " .. tostring(v))
 							end
 						end
 					end
@@ -441,23 +441,23 @@ CAF = CAF2
 
 local Files = file.Find( "caf/core/server/*.lua" , "LUA")
 for k, File in ipairs(Files) do
-	Msg("Loading: "..File.."...")
+	Msg("Loading: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/core/server/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Loaded: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 Files = file.Find("CAF/Core/client/*.lua", "LUA")
 for k, File in ipairs(Files) do
-	Msg("Sending: "..File.."...")
+	Msg("Sending: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(AddCSLuaFile, "caf/core/client/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
@@ -468,61 +468,61 @@ for k, File in ipairs(Files) do
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 Files = file.Find("caf/languagevars/*.lua", "LUA")
 for k, File in ipairs(Files) do
-	Msg("Sending: "..File.."...")
+	Msg("Sending: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(AddCSLuaFile, "caf/languagevars/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 for k, File in ipairs(Files) do
-	Msg("Sending: "..File.."...")
+	Msg("Sending: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/languagevars/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 --Main Addon
 local Files = file.Find( "caf/addons/server/*.lua" , "LUA")
 for k, File in ipairs(Files) do
-	Msg("Loading: "..File.."...")
+	Msg("Loading: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/addons/server/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Loaded: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 Files = file.Find("caf/addons/client/*.lua", "LUA")
 for k, File in ipairs(Files) do
-	Msg("Sending: "..File.."...")
+	Msg("Sending: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(AddCSLuaFile, "caf/addons/client/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
 
 Files = file.Find("caf/addons/shared/*.lua", "LUA")
 for k, File in ipairs(Files) do
-	Msg("Sending: "..File.."...")
+	Msg("Sending: " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(AddCSLuaFile, "caf/addons/shared/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg("Sent: Successfully\n")
+		Msg(" Done.\n")
 	end
 end
