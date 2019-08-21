@@ -16,8 +16,8 @@ if not inputs or not inputs.version or inputs.version < version then
         STRING = 1,
         NUMBER = 2,
         VECTOR = 3,
-        ENTITY = 4
-        CUSTOM = 255,
+        ENTITY = 4,
+        CUSTOM = 255
     }
     inputs.types = types
     local convert = {
