@@ -1,8 +1,3 @@
-local gmod_version_required = 145;
-if ( VERSION < gmod_version_required ) then
-	error("CAF: Your gmod is out of date: found version ", VERSION, "required ", gmod_version_required)
-end
-
 local net = net
 
 local net_pools = {"CAF_Addon_Construct", "CAF_Addon_Destruct", "CAF_Start_true", "CAF_Start_false", "CAF_Addon_POPUP"};
