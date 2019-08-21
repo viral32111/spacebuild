@@ -45,10 +45,10 @@ hooks["OnAddonConstruct"] = {}
 hooks["OnAddonExtraOptionChange"] = {}
 
 local function ErrorOffStuff(String)
-	Msg( "----------------------------------------------------------------------\n" )
-	Msg("-----------Custom Addon Management Framework Error----------\n")
-	Msg("----------------------------------------------------------------------\n")
-	Msg(tostring(String).."\n")
+	print( "----------------------------------------------------------------------")
+	print("-----------Custom Addon Management Framework Error----------")
+	print("----------------------------------------------------------------------")
+	print(tostring(String))
 end
 
 CAF2.CAF3 = CAF3
@@ -302,34 +302,31 @@ net.Receive("CAF_Addon_POPUP", ProccessMessage)
 
 local Files = file.Find( "caf/core/client/*.lua" , "LUA")
 for k, File in ipairs(Files) do
-	Msg(CAF.GetLangVar("Loading") .. ": " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/core/client/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg(" Done.\n")
+		print("Loaded: " .. File)
 	end
 end
 
 Files = file.Find("caf/languagevars/*.lua", "LUA")
 for k, File in ipairs(Files) do
-	Msg(CAF.GetLangVar("Loading") .. ": " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/languagevars/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg(" Done.\n")
+		print("Loaded: " .. File)
 	end
 end
 
 --Addons
 local Files = file.Find( "caf/addons/client/*.lua" , "LUA")
 for k, File in ipairs(Files) do
-	Msg(CAF.GetLangVar("Loading") .. ": " .. File .. "...")
 	local ErrorCheck, PCallError = pcall(include, "caf/addons/client/"..File)
 	if(not ErrorCheck) then
 		ErrorOffStuff(PCallError)
 	else
-		Msg(" Done.\n")
+		print("Loaded: " .. File)
 	end
 end
