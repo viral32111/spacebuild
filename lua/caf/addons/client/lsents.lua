@@ -39,7 +39,7 @@ function RD.GetVersion()
     return 3.05, "Beta"
 end
 
-local isuptodatecheck;
+local isuptodatecheck
 --[[
 	Update check
 ]]
@@ -48,19 +48,19 @@ function RD.IsUpToDate(callBackfn)
         return
     end
     if isuptodatecheck ~= nil then
-        callBackfn(isuptodatecheck);
+        callBackfn(isuptodatecheck)
         return
     end
     --[[http.Get("http://www.snakesvx.net/versions/lsents.txt","",
          function(html,size)
-             local version = tonumber(html);
+             local version = tonumber(html)
              if(version) then
-                 local latest = version;
+                 local latest = version
                  if(latest > RD.GetVersion()) then
-                     isuptodatecheck = false;
+                     isuptodatecheck = false
                      callBackfn(false)
                  else
-                     isuptodatecheck = true;
+                     isuptodatecheck = true
                      callBackfn(true)
                  end
              end
@@ -83,32 +83,32 @@ function RD.GetMenu(menutype, menuname) --Name is nil for main menu, String for 
     if not menutype then
         data["Info"] = {}
         --Create Info Menu
-        local tmp = data["Info"];
+        local tmp = data["Info"]
         tmp["Wiki Home"] = {}
-        tmp["Wiki Home"].localurl = "test/test.html";
-        tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support";
+        tmp["Wiki Home"].localurl = "test/test.html"
+        tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support"
 
         tmp["Generators"] = {}
-        tmp["Generators"].localurl = "test/test.html";
+        tmp["Generators"].localurl = "test/test.html"
         tmp["Generators"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support_Generators"
 
         tmp["Storage Devices"] = {}
-        tmp["Storage Devices"].localurl = "test/test.html";
+        tmp["Storage Devices"].localurl = "test/test.html"
         tmp["Storage Devices"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support_Storage_Devices"
 
         tmp["Special Devices"] = {}
-        tmp["Special Devices"].localurl = "test/test.html";
+        tmp["Special Devices"].localurl = "test/test.html"
         tmp["Special Devices"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support_Special_Devices"
 
         tmp["Environmental Controls"] = {}
-        tmp["Environmental Controls"].localurl = "test/test.html";
+        tmp["Environmental Controls"].localurl = "test/test.html"
         tmp["Environmental Controls"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support_Environment_Controls"
         --Create Help Menu
         data["Help"] = {}
-        tmp = data["Help"];
+        tmp = data["Help"]
         tmp["Wiki Home"] = {}
-        tmp["Wiki Home"].localurl = "test/test.html";
-        tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support";
+        tmp["Wiki Home"].localurl = "test/test.html"
+        tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support"
     end
     return data
 end
@@ -117,14 +117,14 @@ end
 	Get the Custom String Status from this Addon Class
 ]]
 function RD.GetCustomStatus()
-    return;
+    return
 end
 
 --[[
 	Can the Status of the addon be changed?
 ]]
 function RD.CanChangeStatus()
-    return false;
+    return false
 end
 
 --[[

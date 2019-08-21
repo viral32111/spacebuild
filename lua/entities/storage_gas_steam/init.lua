@@ -30,7 +30,7 @@ end
 function ENT:OnRemove()
     self.BaseClass.OnRemove(self)
     local air = self:GetResourceAmount("steam")
-    self:ConsumeResource("steam", air);
+    self:ConsumeResource("steam", air)
     if self.environment then
         local O2 = math.Round(air / 2)
         local H = air * 2
@@ -103,22 +103,22 @@ function ENT:Think()
         if self.environment then
             local planet = self.environment:IsOnPlanet()
             if (planet and planet:GetTemperature(self) < 350) then
-                local dif = 350 - planet:GetTemperature(self);
-                dif = math.floor(dif / 30);
+                local dif = 350 - planet:GetTemperature(self)
+                dif = math.floor(dif / 30)
                 local div = math.Round(self:GetNetworkCapacity("steam") / self.MAXRESOURCE)
                 local actual = math.ceil((self:GetResourceAmount("steam")) / div)
-                local toremove = math.ceil(math.ceil(0.1 * actual) * dif);
-                self:ConsumeResource("steam", toremove);
-                self:SupplyResource("water", toremove);
+                local toremove = math.ceil(math.ceil(0.1 * actual) * dif)
+                self:ConsumeResource("steam", toremove)
+                self:SupplyResource("water", toremove)
             end
         end
     else
-        local dif = 0.5;
+        local dif = 0.5
         local div = math.Round(self:GetNetworkCapacity("steam") / self.MAXRESOURCE)
         local actual = math.ceil((self:GetResourceAmount("steam")) / div)
-        local toremove = math.ceil(math.ceil(0.1 * actual) * dif);
-        self:ConsumeResource("steam", toremove);
-        self:SupplyResource("water", toremove);
+        local toremove = math.ceil(math.ceil(0.1 * actual) * dif)
+        self:ConsumeResource("steam", toremove)
+        self:SupplyResource("water", toremove)
     end
     if not (WireAddon == nil) then
         self:UpdateWireOutput()

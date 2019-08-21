@@ -40,22 +40,22 @@ local function OpenMenu(um)
 	local SelectedNode = nil
 	local LeftTree = vgui.Create( "DTree", MainFrame )
 	LeftTree:SetSize( 180, 300 )
-	LeftTree:SetPos(20, 25);
+	LeftTree:SetPos(20, 25)
 	LeftTree:SetShowIcons(false)
 	
 	local RLabel =  vgui.Create("DLabel", MainFrame)
-	RLabel:SetPos(400, 25);
+	RLabel:SetPos(400, 25)
 	RLabel:SetSize(140, 30)
 	RLabel:SetText("Pumps in range")
 	
 	local RightTree = vgui.Create( "DTree", MainFrame )
 	RightTree:SetSize( 180, 265 )
-	RightTree:SetPos(400, 60);
+	RightTree:SetPos(400, 60)
 	RightTree:SetShowIcons(false)
 
 	local RightPanel = vgui.Create("DPanel", MainFrame )
-	RightPanel:SetSize(180,250);
-	RightPanel:SetPos(210, 25);
+	RightPanel:SetSize(180,250)
+	RightPanel:SetPos(210, 25)
 	
 	
 	local NameText = vgui.Create("DTextEntry", RightPanel)
@@ -65,7 +65,7 @@ local function OpenMenu(um)
 	NameText:SetValue(ent:GetNetworkedString("name"))
 	
 	local nameButton = vgui.Create("DImageButton",RightPanel)
-	nameButton:SetImage("icon16/folder_go.png");
+	nameButton:SetImage("icon16/folder_go.png")
 	nameButton:SetPos(140, 25)
 	nameButton:SetSize(20, 20)
 	nameButton:SetToolTip("Update Pump Name")
@@ -107,7 +107,7 @@ local function OpenMenu(um)
 	local pumps = GetPumps(ent, 768)
 	if pumps and table.Count(pumps) > 0 then 
 		for k, v in pairs(pumps) do
-			local title = v:GetNetworkedString("name");
+			local title = v:GetNetworkedString("name")
 			local node = RightTree:AddNode(title)
 			node.index = v:EntIndex()
 			function node:DoClick()
@@ -171,7 +171,7 @@ local function OpenMenu(um)
 	local nettable = CAF.GetAddon("Resource Distribution").GetNetTable(netid)
 	if nettable and table.Count(nettable) > 0 and nettable.resources and table.Count(nettable.resources) > 0 then 
 		for k, v in pairs(nettable.resources) do
-			local title = k;
+			local title = k
 			local node = LeftTree:AddNode(title)
 			node.res = k
 			function node:DoClick()
@@ -224,7 +224,7 @@ function ENT:DoNormalDraw( bDontDrawModel )
 		if RD_OverLay_Mode.GetInt then
 			local nr = math.Round(RD_OverLay_Mode:GetInt())
 			if nr >= 0 and nr <= 2 then
-				mode = nr;
+				mode = nr
 			end
 		end
 	end

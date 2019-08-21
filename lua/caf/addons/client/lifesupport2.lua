@@ -73,7 +73,7 @@ end
 	Can the Status of the addon be changed?
 ]]
 function RD.CanChangeStatus()
-    return false;
+    return false
 end
 
 --[[*

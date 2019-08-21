@@ -36,7 +36,7 @@ function ENT:DoNormalDraw(bDontDrawModel)
         if RD_OverLay_Mode.GetInt then
             local nr = math.Round(RD_OverLay_Mode:GetInt())
             if nr >= 0 and nr <= 2 then
-                mode = nr;
+                mode = nr
             end
         end
     end
@@ -179,7 +179,7 @@ function ENT:DoNormalDraw(bDontDrawModel)
                 -- Print the used resources
                 local stringUsage = ""
                 local resources = nettable.resources
-                local RD = CAF.GetAddon("Resource Distribution");
+                local RD = CAF.GetAddon("Resource Distribution")
                 if (table.Count(resources) > 0) then
                     local i = 0
                     surface.SetFont("Flavour")
@@ -274,7 +274,7 @@ function ENT:DoNormalDraw(bDontDrawModel)
                     TempY = TempY + 70
                 end
             --Stop rendering
-            end);
+            end)
             cam.End3D2D()
         end
     else

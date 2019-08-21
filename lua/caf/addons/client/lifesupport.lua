@@ -24,9 +24,9 @@ ls_environment.o2 = 0
 ls_environment.temperature = 0
 
 local ls_suit = {}
-ls_suit.o2 = 0;
-ls_suit.coolant = 0;
-ls_suit.energy = 0;
+ls_suit.o2 = 0
+ls_suit.coolant = 0
+ls_suit.energy = 0
 
 local ScH	= ScrH()
 local MidW	= ScrW() / 2
@@ -34,8 +34,8 @@ local MidW	= ScrW() / 2
 local huds 	= {}
 --Hud 1
 local hud1 		= {}
-hud1.ScH 		= ScH;
-hud1.MidW 		= MidW;
+hud1.ScH 		= ScH
+hud1.MidW 		= MidW
 hud1.Left 		= hud1.MidW - 80 --70
 hud1.Left2		= hud1.MidW - 90 --80
 hud1.Right		= hud1.MidW + 80 --70
@@ -48,8 +48,8 @@ huds[1] 		= hud1
 hud1 			= nil
 --Hud2
 local hud2 		= {}
-hud2.ScH 		= ScH;
-hud2.MidW 		= MidW;
+hud2.ScH 		= ScH
+hud2.MidW 		= MidW
 hud2.Width 		= 224
 hud2.Height 	= 128
 hud2.Bottom 	= hud2.ScH - 32
@@ -71,16 +71,16 @@ colors.Cold		= Color(0,225,255,255)
 colors.Hot		= Color(225,0,0,255)
 colors.Warn		= Color(255,165,0,255)
 colors.Grey  	= Color(150, 150, 150, 255)
-colors.Green 	= Color(0, 225, 0, 255);
+colors.Green 	= Color(0, 225, 0, 255)
 
 local MaxAmounts = 4000
 local MaxAmountsDivide = MaxAmounts/100
 
 local function lifesupport_HUDPaint()
 	if GetConVarString('cl_hudversion') == "" then
-		local ls_sb_mode = false;
+		local ls_sb_mode = false
 		if CAF.GetAddon("Spacebuild") and CAF.GetAddon("Spacebuild").GetStatus() then
-			ls_sb_mode = true;
+			ls_sb_mode = true
 		end
 		local ply = LocalPlayer()
 		if not ply or not ply:Alive() then return end
@@ -320,8 +320,8 @@ local function lifesupport_HUDPaint()
 						if Coolant	< 4 then ValCol[3] = colors.Warn end
 						if Energy	< 4 then ValCol[4] = colors.Warn end
 						draw.RoundedBox( 8, hud.Left2 , hud.H2, 180, hud.H3, colors.Black)
-						local d_temp = Temp;
-						local d_temp_type = "K";
+						local d_temp = Temp
+						local d_temp_type = "K"
 						if string.upper(Display_temperature:GetString()) == "C" then
 							d_temp = Temp - 273
 							d_temp_type = "C"
@@ -416,7 +416,7 @@ function LS.GetVersion()
 end
 
 
-local isuptodatecheck;
+local isuptodatecheck
 --[[
 	Update check
 ]]
@@ -425,19 +425,19 @@ function LS.IsUpToDate(callBackfn)
 		return
 	end
 	if isuptodatecheck ~= nil then
-		callBackfn(isuptodatecheck);
+		callBackfn(isuptodatecheck)
 		return
 	end
 	--[[http.Get("http://www.snakesvx.net/versions/ls.txt","",
 		function(html,size)
-			local version = tonumber(html);
+			local version = tonumber(html)
 			if(version) then
-				local latest = version;
+				local latest = version
 				if(latest > LS.GetVersion()) then
-					isuptodatecheck = false;
+					isuptodatecheck = false
 					callBackfn(false)
 				else
-					isuptodatecheck = true;
+					isuptodatecheck = true
 					callBackfn(true)
 				end
 			end
@@ -460,17 +460,17 @@ function LS.GetMenu(menutype, menuname) --Name is nil for main menu, String for 
 	if not menutype then
 		--Create Info Menu
 		data["Info"] = {}
-		local tmp = data["Info"];
+		local tmp = data["Info"]
 		tmp["Wiki Home"] = {}
-		tmp["Wiki Home"].localurl = "test/test.html";
-		tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support";
+		tmp["Wiki Home"].localurl = "test/test.html"
+		tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support"
 		
 		--Create Help Menu
 		data["Help"] = {}
-		tmp = data["Help"];
+		tmp = data["Help"]
 		tmp["Wiki Home"] = {}
-		tmp["Wiki Home"].localurl = "test/test.html";
-		tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support";
+		tmp["Wiki Home"].localurl = "test/test.html"
+		tmp["Wiki Home"].interneturl = "http://www.snakesvx.net/index.php/module_Wiki/title_Garrysmod_Info_Life_Support"
 		
 	end
 	return data

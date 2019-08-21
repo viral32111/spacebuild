@@ -14,8 +14,8 @@ local stars = {}
 -- Used for planet effects
 local planets = {} --Clients hasn't been updated yet
 -- enabled?
-local Color_Enabled = false;
-local Bloom_Enabled = false;
+local Color_Enabled = false
+local Bloom_Enabled = false
 
 -- Color Variables.
 local ColorModify = {
@@ -28,7 +28,7 @@ local ColorModify = {
 	[ "$pp_colour_mulr" ] = 0,
 	[ "$pp_colour_mulg" ] = 0,
 	[ "$pp_colour_mulb" ] = 0,
-};
+}
 
 -- Bloom Variables
 local Bloom = {
@@ -43,7 +43,7 @@ local Bloom = {
 		g = 0,
 		b = 0,
 	},
-};
+}
 -- Color receive message
 local function SetColor(planet)
 	-- don't support colormod?
@@ -86,7 +86,7 @@ end
 local function Render( )
 	if( Color_Enabled ) then
 		-- draw colormod.
-		DrawColorModify( ColorModify );
+		DrawColorModify( ColorModify )
 	end
 	if( Bloom_Enabled ) then
 		-- draw bloom.
@@ -101,7 +101,7 @@ local function Render( )
 			Bloom.col.r, 
 			Bloom.col.g, 
 			Bloom.col.b 
-		);
+		)
 	end
 end
 
@@ -114,15 +114,15 @@ local function DrawSunEffects( )
 		local entpos = Sun.Position --Sun.ent:LocalToWorld( Vector(0,0,0) )
 		local normVec = Vector( entpos - EyePos() )
 		normVec:Normalize()
-		local dot = math.Clamp( EyeAngles():Forward():DotProduct( normVec ), -1, 1 );
+		local dot = math.Clamp( EyeAngles():Forward():DotProduct( normVec ), -1, 1 )
 		dot = math.abs(dot)
-		--local dist = Vector( entpos - EyePos() ):Length();
+		--local dist = Vector( entpos - EyePos() ):Length()
 		local dist = entpos:Distance(EyePos())/1.5
 		-- draw sunbeams.
-		local sunpos = EyePos() + normVec * ( dist * 0.5 );
-		local scrpos = sunpos:ToScreen();
+		local sunpos = EyePos() + normVec * ( dist * 0.5 )
+		local scrpos = sunpos:ToScreen()
 		if( dist <= Sun.BeamRadius and dot > 0 ) then
-			local frac = ( 1 - ( ( 1 / ( Sun.BeamRadius ) ) * dist ) ) * dot;
+			local frac = ( 1 - ( ( 1 / ( Sun.BeamRadius ) ) * dist ) ) * dot
 			-- draw sun.
 			--DrawSunbeams( darken, multiply, sunsize, sunx, suny )
 			DrawSunbeams(
@@ -131,19 +131,19 @@ local function DrawSunEffects( )
 				0.255,
 				scrpos.x / ScrW(),
 				scrpos.y / ScrH()
-			);
+			)
 		end
 		-- can the sun see us?
 		local trace = {
 			start = entpos,
 			endpos = EyePos(),
 			filter = LocalPlayer(),
-		};
-		local tr = util.TraceLine( trace );
+		}
+		local tr = util.TraceLine( trace )
 		-- draw!
 		if( dist <= Sun.Radius and dot > 0 and tr.Fraction >= 1 ) then
 			-- calculate brightness.
-			local frac = ( 1 - ( ( 1 / Sun.Radius ) * dist ) ) * dot;
+			local frac = ( 1 - ( ( 1 / Sun.Radius ) * dist ) ) * dot
 			-- draw bloom.
 			DrawBloom(
 				0.428, 
@@ -154,7 +154,7 @@ local function DrawSunEffects( )
 				1, 
 				1, 
 				1
-			);
+			)
 			--[[DrawBloom(
 				0, 
 				0.75 * frac, 
@@ -176,9 +176,9 @@ local function DrawSunEffects( )
 				['$pp_colour_mulr']		= 0,
 				['$pp_colour_mulg']		= 0,
 				['$pp_colour_mulb']		= 0,
-			};
+			}
 			-- draw colormod.
-			DrawColorModify( tab );
+			DrawColorModify( tab )
 		end
 	end
 
@@ -221,7 +221,7 @@ local function recPlanet( msg )
 	end
 	planets[ent] = hash
 end
-usermessage.Hook( "AddPlanet", recPlanet );
+usermessage.Hook( "AddPlanet", recPlanet )
 
 -- receive sun information
 local function recvSun( msg )
@@ -237,7 +237,7 @@ local function recvSun( msg )
 		BeamRadius = radius * 1.5, --*3
 	}
 end
-usermessage.Hook( "AddStar", recvSun );
+usermessage.Hook( "AddStar", recvSun )
 
 --End Local Functions
 
@@ -248,10 +248,10 @@ usermessage.Hook( "AddStar", recvSun );
 	The Constructor for this Custom Addon Class
 ]]
 function SB.__Construct()
-	hook.Add( "RenderScreenspaceEffects", "VFX_Render", Render );
-	hook.Add( "RenderScreenspaceEffects", "SunEffects", DrawSunEffects );
+	hook.Add( "RenderScreenspaceEffects", "VFX_Render", Render )
+	hook.Add( "RenderScreenspaceEffects", "SunEffects", DrawSunEffects )
 	CAF.AddHook("think2", SB.Space_Affect_Cl)
-	status = true;
+	status = true
 	return true
 end
 
@@ -259,10 +259,10 @@ end
 	The Destructor for this Custom Addon Class
 ]]
 function SB.__Destruct()
-	hook.Remove( "RenderScreenspaceEffects", "VFX_Render");
-	hook.Remove( "RenderScreenspaceEffects", "SunEffects");
+	hook.Remove( "RenderScreenspaceEffects", "VFX_Render")
+	hook.Remove( "RenderScreenspaceEffects", "SunEffects")
 	CAF.RemoveHook("think2", SB.Space_Affect_Cl)
-	status = false;
+	status = false
 	return true
 end
 

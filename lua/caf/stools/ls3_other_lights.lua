@@ -18,12 +18,12 @@ CAFToolSetup.SetLang("Life Support Light", "Create Light attached to any surface
 
 function TOOL.EnableFunc()
     if not CAF then
-        return false;
+        return false
     end
     if not CAF.GetAddon("Resource Distribution") or not CAF.GetAddon("Resource Distribution").GetStatus() then
-        return false;
+        return false
     end
-    return true;
+    return true
 end
 
 TOOL.ExtraCCVars = {}

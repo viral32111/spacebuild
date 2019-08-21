@@ -18,12 +18,12 @@ CAFToolSetup.SetLang("Life Support Generators", "Create Generators attached to a
 
 function TOOL.EnableFunc()
     if not CAF then
-        return false;
+        return false
     end
     if not CAF.GetAddon("Resource Distribution") or not CAF.GetAddon("Resource Distribution").GetStatus() then
-        return false;
+        return false
     end
-    return true;
+    return true
 end
 
 TOOL.ExtraCCVars = {
@@ -107,7 +107,7 @@ local function gas_generator_func(ent, type, sub_type, devinfo, Extra_Data, ent_
     elseif type == "generator_h_ramscoop" then
         res = "hydrogen"
     end
-    ent.caf.custom.resource = res;
+    ent.caf.custom.resource = res
     CAF.GetAddon("Resource Distribution").RegisterNonStorageDevice(ent)
     local phys = ent:GetPhysicsObject()
     if phys:IsValid() and phys.GetVolume then
@@ -167,7 +167,7 @@ local function energy_generator_func(ent, type, sub_type, devinfo, Extra_Data, e
     local base_mass = 10
     local base_health = 50
     local phys = ent:GetPhysicsObject()
-    local volume = -1;
+    local volume = -1
     if phys:IsValid() and phys.GetVolume then
         local vol = phys:GetVolume()
         --MsgN("Ent Physics Object Volume: ",vol)
@@ -180,9 +180,9 @@ local function energy_generator_func(ent, type, sub_type, devinfo, Extra_Data, e
         end
         base_mass = 1000
         base_health = 1000
-        ent:AddResource("energy", math.ceil(volume_mul * 5000));
+        ent:AddResource("energy", math.ceil(volume_mul * 5000))
         ent:AddResource("steam", math.ceil(volume_mul * 0.92 * 45))
-        ent:AddResource("water", math.ceil(volume_mul * 0.08 * 45));
+        ent:AddResource("water", math.ceil(volume_mul * 0.08 * 45))
     elseif type == "generator_energy_hydro" then
         base_volume = 69897
         if volume ~= -1 then
@@ -190,13 +190,13 @@ local function energy_generator_func(ent, type, sub_type, devinfo, Extra_Data, e
         end
         local base_mass = 100
         local base_health = 150
-        ent:AddResource("energy", math.ceil(volume_mul * 100));
+        ent:AddResource("energy", math.ceil(volume_mul * 100))
     elseif type == "generator_energy_solar" then
         base_volume = 1982 --2950 --1014
         if volume ~= -1 then
             volume_mul = volume / base_volume
         end
-        ent:AddResource("energy", math.ceil(volume_mul * 8));
+        ent:AddResource("energy", math.ceil(volume_mul * 8))
     elseif type == "generator_energy_wind" then
         base_volume = 34586 --17293 --9882
         if volume ~= -1 then
@@ -204,7 +204,7 @@ local function energy_generator_func(ent, type, sub_type, devinfo, Extra_Data, e
         end
         base_mass = 200
         base_health = 200
-        ent:AddResource("energy", math.ceil(volume_mul * 100));
+        ent:AddResource("energy", math.ceil(volume_mul * 100))
     elseif type == "generator_energy_steam_turbine" then
         base_volume = 18619 --27929
         if volume ~= -1 then
@@ -212,8 +212,8 @@ local function energy_generator_func(ent, type, sub_type, devinfo, Extra_Data, e
         end
         base_mass = 150
         base_health = 300
-        ent:AddResource("energy", math.ceil(volume_mul * 90));
-        ent:AddResource("water", math.ceil(volume_mul * 10));
+        ent:AddResource("energy", math.ceil(volume_mul * 90))
+        ent:AddResource("water", math.ceil(volume_mul * 10))
     end
     --CAF.GetAddon("Resource Distribution").RegisterNonStorageDevice(ent)
     ent:SetMultiplier(volume_mul)

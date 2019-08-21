@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local version = 1;
+local version = 1
 local WireAddon = WireAddon
 
 if not inputs or not inputs.version or inputs.version < version then
@@ -16,10 +16,10 @@ if not inputs or not inputs.version or inputs.version < version then
         STRING = 1,
         NUMBER = 2,
         VECTOR = 3,
-        ENTITY = 4;
+        ENTITY = 4
         CUSTOM = 255,
     }
-    inputs.types = types;
+    inputs.types = types
     local convert = {
         tostring,
         tonumber,
@@ -27,16 +27,16 @@ if not inputs or not inputs.version or inputs.version < version then
         function(ent_id) return Entity(tonumer(entid)) end
     }
 
-    local inpts = inputs;
-    inpts.version = version;
+    local inpts = inputs
+    inpts.version = version
 
     local function capitalize(str)
         return str:gsub("^%l", string.upper)
     end
 
     local function generateMutatorNames(str)
-        str = capitalize(str);
-        return "get" .. str, "set" .. str;
+        str = capitalize(str)
+        return "get" .. str, "set" .. str
     end
 
     local function convertValue(data, value)
@@ -56,28 +56,28 @@ if not inputs or not inputs.version or inputs.version < version then
         return value
     end
 
-    local tmp, tmp2, tmp3;
+    local tmp, tmp2, tmp3
 
     function inpts.register(ent, input_data, output_data, shared_data)
-        ent.inputenabled = true;
+        ent.inputenabled = true
 
         --convert tables to correct input
         if table.IsSequential(input_data) then
-            tmp = input_data;
+            tmp = input_data
             input_data = {}
             for _, v in pairs(tmp) do
                 input_data[v] = { name = v, type = types.STRING }
             end
         end
         if table.IsSequential(output_data) then
-            tmp = output_data;
+            tmp = output_data
             output_data = {}
             for _, v in pairs(tmp) do
                 output_data[v] = { name = v, type = types.STRING }
             end
         end
         if table.IsSequential(shared_data) then
-            tmp = shared_data;
+            tmp = shared_data
             shared_data = {}
             for _, v in pairs(tmp) do
                 shared_data[v] = { name = v, type = types.STRING }
@@ -86,31 +86,31 @@ if not inputs or not inputs.version or inputs.version < version then
 
         if SERVER then
             for k, v in pairs(shared_data) do
-                input_data[k] = v;
-                output_data[k] = v;
+                input_data[k] = v
+                output_data[k] = v
             end
             shared_data = nil
         else
-            ent.menu_inputs = input_data;
-            ent.menu_shared = shared_data;
-            ent.menu_outputs = output_data;
+            ent.menu_inputs = input_data
+            ent.menu_shared = shared_data
+            ent.menu_outputs = output_data
         end
 
         --Enable setter function
-        local oldTriggerInput = ent.TriggerInput;
+        local oldTriggerInput = ent.TriggerInput
 
         function ent:TriggerInput(iname, value)
-            local get, set = generateMutatorNames(iname);
+            local get, set = generateMutatorNames(iname)
             if ent[set] then
                 ent[set](convertValue(input_data[iname], value))
             elseif oldTriggerInput then
-                oldTriggerInput(iname, value);
+                oldTriggerInput(iname, value)
             end
         end
 
         --Enable getter function
         function ent:getValue(iname)
-            local get, set = generateMutatorNames(iname);
+            local get, set = generateMutatorNames(iname)
             if ent[get] then
                 return ent[get]()
             end
@@ -128,10 +128,10 @@ if not inputs or not inputs.version or inputs.version < version then
             local output_keys = {}
 
             for k, _ in pairs(input_data) do
-                table.insert(input_keys, k);
+                table.insert(input_keys, k)
             end
             for k, _ in pairs(output_data) do
-                table.insert(output_keys, k);
+                table.insert(output_keys, k)
             end
 
             ent.WireDebugName = ent.PrintName
@@ -156,12 +156,12 @@ if not inputs or not inputs.version or inputs.version < version then
             Action = function(self, ent)
                 drawMenu(ent)
             end
-        });
+        })
 
     if SERVER then
         local function setvalue(player, command, arguments)
-            local ent = arguments[1];
-            ent = Entity(ent);
+            local ent = arguments[1]
+            ent = Entity(ent)
             if ent and ent.setValue then
                 ent.setValue(arguments[2], arguments[3])
             end
@@ -170,8 +170,8 @@ if not inputs or not inputs.version or inputs.version < version then
         concommand.Add("input_set_value", setvalue)
 
         local function getvalue(player, command, arguments)
-            local ent = arguments[1];
-            ent = Entity(ent);
+            local ent = arguments[1]
+            ent = Entity(ent)
             if ent and ent.getValue then
                 local value = ent.getValue(arguments[2])
                 -- TODO send it back to the client

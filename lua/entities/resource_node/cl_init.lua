@@ -27,7 +27,7 @@ function ENT:DoNormalDraw( bDontDrawModel )
 		if RD_OverLay_Mode.GetInt then
 			local nr = math.Round(RD_OverLay_Mode:GetInt())
 			if nr >= 0 and nr <= 3 then
-				mode = nr;
+				mode = nr
 			end
 		end
 	end

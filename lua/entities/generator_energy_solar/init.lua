@@ -50,7 +50,7 @@ function ENT:Destruct()
 end
 
 function ENT:Extract_Energy(mul)
-    mul = mul or 0;
+    mul = mul or 0
     if mul == 0 then
         return
     end

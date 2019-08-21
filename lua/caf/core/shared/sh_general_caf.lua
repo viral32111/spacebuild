@@ -1,6 +1,6 @@
-local CAF2 = CAF;
-local CAF3 = CAF2.CAF3;
-local DEBUG = CAF3.DEBUG;
+local CAF2 = CAF
+local CAF3 = CAF2.CAF3
+local DEBUG = CAF3.DEBUG
 local Addons = CAF3.Addons
 local addonlevel = CAF3.addonlevel
 local hooks = CAF3.hooks
@@ -10,11 +10,11 @@ local hooks = CAF3.hooks
 local DefaultLang = "english"
 
 function CAF2.begintime()
-	return os.clock( );
+	return os.clock( )
 end
 
 function CAF2.endtime(begintime)
-	return CAF2.begintime() - begintime;
+	return CAF2.begintime() - begintime
 end
 
 
@@ -48,11 +48,11 @@ end
 
 function CAF2.SaveVar(name, value)
 	if not name or not value then return false, "Problem with the Parameters" end
-	CAF2.LoadVar(name, value);
+	CAF2.LoadVar(name, value)
 	name = sql.SQLStr(name)
 	value = sql.SQLStr(value)
 	sql.Query("UPDATE CAF_Custom_Vars SET varvalue="..value.." WHERE varname="..name..";")
-	vars[name] = value;
+	vars[name] = value
 end
 
 function CAF2.LoadVar(name, defaultvalue)
@@ -62,14 +62,14 @@ function CAF2.LoadVar(name, defaultvalue)
 	local data = sql.Query("SELECT * FROM CAF_Custom_Vars WHERE varname = '"..name.."';")
 	if (not data) then
 		print(sql.LastError())
-		InsertVar(name, defaultvalue);
+		InsertVar(name, defaultvalue)
 		
 	else
 		defaultvalue = string.TrimRight(data[1]["varvalue"])
 	end
 	Msg("-"..tostring(defaultvalue).."-\n")
 	vars[name] = defaultvalue
-	return defaultvalue;
+	return defaultvalue
 end
 
 -- END CAF Custom Status Saving

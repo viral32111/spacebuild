@@ -1,6 +1,6 @@
 local RD = {}
---local nettable = {};
---local ent_table = {};
+--local nettable = {}
+--local ent_table = {}
 local resourcenames = {}
 local resources = {}
 local status = false
@@ -195,7 +195,7 @@ umsg.Start("RD_ClearNets")
 local function ClearNets( um )
 	--nettable = {}
 	--ent_table = {}
-	rd_cache:clear();
+	rd_cache:clear()
 end
 usermessage.Hook("RD_ClearNets", ClearNets)
 
@@ -204,7 +204,7 @@ umsg.Start("RD_Entity_Data", ply)
 	umsg.Short(entid) --send key to update
 	umsg.Short(rddata.network) --send network used in entity
 	
-	local nr_of_resources = table.Count(rddata.resources);
+	local nr_of_resources = table.Count(rddata.resources)
 	umsg.Short(nr_of_resources) --How many resources are going to be send?
 	if nr_of_resources > 0 then
 		for l, w in pairs(rddata.resources) do
@@ -222,11 +222,11 @@ local function ReadBool()
 end
 
 local function ReadShort()
-   return net.ReadInt(16);
+   return net.ReadInt(16)
 end
 
 local function ReadLong()
-    return net.ReadInt(32);
+    return net.ReadInt(32)
 end
 
 local dev = GetConVar("developer")
@@ -235,15 +235,15 @@ local function AddEntityToCache( nrofbytes )
 	local data = {}
 
 	data.entid = ReadShort() --Key
-	local up_to_date = ReadBool();
+	local up_to_date = ReadBool()
 	if up_to_date then
 		rd_cache:update("entity_"..tostring(data.entid))
 	end
 	data.network = ReadShort() --network key
 	
 	data.resources = {}
-	local i = 0;
-	local nr_of_resources = ReadShort();
+	local i = 0
+	local nr_of_resources = ReadShort()
 	if (nr_of_resources > 0) then
 		--print("nr_of_sources", nr_of_resources)
 		local resource 
@@ -267,7 +267,7 @@ net.Receive("RD_Entity_Data", AddEntityToCache)
 umsg.Start("RD_Network_Data", ply)
 		umsg.Short(netid) --send key to update
 		
-		local nr_of_resources = table.Count(rddata.resources);
+		local nr_of_resources = table.Count(rddata.resources)
 		umsg.Short(nr_of_resources) --How many resources are going to be send?
 		if nr_of_resources > 0 then
 			for l, w in pairs(rddata.resources) do
@@ -277,7 +277,7 @@ umsg.Start("RD_Network_Data", ply)
 			end
 		end
 		
-		local nr_of_cons = table.Count(rddata.cons);
+		local nr_of_cons = table.Count(rddata.cons)
 		umsg.Short(nr_of_cons) --How many connections are going to be send?
 		if nr_of_cons > 0 then
 			for l, w in pairs(rddata.cons) do
@@ -294,14 +294,14 @@ local function AddNetworkToCache( nrofbytes )
 	local data = {}
 	
 	data.netid = ReadShort() --network key
-	local up_to_date = ReadBool();
+	local up_to_date = ReadBool()
 	if up_to_date then
 		rd_cache:update("network_"..tostring(data.netid))
 	end
 	
 	data.resources = {}
-	local i = 0;
-	local nr_of_resources = ReadShort();
+	local i = 0
+	local nr_of_resources = ReadShort()
 	if (nr_of_resources > 0) then
 		--print("nr_of_sources", nr_of_resources)
 		local resource 
@@ -322,13 +322,13 @@ local function AddNetworkToCache( nrofbytes )
 	end
 	
 	data.cons = {}
-	local nr_of_cons = ReadShort();
+	local nr_of_cons = ReadShort()
 	if (nr_of_cons > 0) then
 		--print("nr_of_cons", nr_of_cons)
 		for i = 1, nr_of_cons do
 			--print(i)
 			con = ReadShort()
-			table.insert(data.cons, con);
+			table.insert(data.cons, con)
 		end
 	end
 	
@@ -378,7 +378,7 @@ function RD.GetVersion()
 	return 3.1, "Alpha"
 end
 
-local isuptodatecheck;
+local isuptodatecheck
 --[[
 	Update check
 ]]
@@ -387,19 +387,19 @@ function RD.IsUpToDate(callBackfn)
 		return
 	end
 	if isuptodatecheck ~= nil then
-		callBackfn(isuptodatecheck);
+		callBackfn(isuptodatecheck)
 		return
 	end
 	--[[http.Get("http://www.snakesvx.net/versions/rd.txt","",
 		function(html,size)
-			local version = tonumber(html);
+			local version = tonumber(html)
 			if(version) then
-				local latest = version;
+				local latest = version
 				if(latest > RD.GetVersion()) then
-					isuptodatecheck = false;
+					isuptodatecheck = false
 					callBackfn(false)
 				else
-					isuptodatecheck = true;
+					isuptodatecheck = true
 					callBackfn(true)
 				end
 			end
@@ -471,12 +471,12 @@ end]]
 
 function RD.GetNetResourceAmount(netid, resource)
 	if not resource then return 0, "No resource given" end
-	local data = RD.GetNetTable(netid);
+	local data = RD.GetNetTable(netid)
 	if not data then return 0, "Not a valid network" end
 	if not data.resources or (data.resources and table.Count(data.resources)==0) then return 0, "No resources available" end
 	if not data.resources[resource] then return 0, "Resource not available" end
 
-	local amount = 0;
+	local amount = 0
 	amount = data.resources[resource].value
 	return amount
 end
@@ -498,7 +498,7 @@ end
 	if not resource then return 0, "No resource given" end
 	local amount = 0
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.resources[resource] then
 			amount = index.resources[resource].maxvalue
 		end
@@ -508,12 +508,12 @@ end]]
 
 function RD.GetNetNetworkCapacity(netid, resource)
 	if not resource then return 0, "No resource given" end
-	local data = RD.GetNetTable(netid);
+	local data = RD.GetNetTable(netid)
 	if not data then return 0, "Not a valid network" end
 	if not data.resources or (data.resources and table.Count(data.resources)==0) then return 0, "No resources available" end
 	if not data.resources[resource] then return 0, "Resource not available" end
 
-	local amount = 0;
+	local amount = 0
 	amount = data.resources[resource].maxvalue
 	return amount
 end
@@ -539,12 +539,12 @@ local ttl = 0.2; --Wait 0.2 second before doing a new request
 function RD.GetEntityTable(ent)
 	local entid = ent:EntIndex( )
 	local id = "entity_"..tostring(entid)
-	local data, needs_update = rd_cache:get(id);
+	local data, needs_update = rd_cache:get(id)
 	if not data or needs_update then
 		if not requests[id] or requests[id] < CurTime() then
 			--Do (new) request
-			requests[id] = CurTime() + ttl;
-			RunConsoleCommand("RD_REQUEST_RESOURCE_DATA", "ENT", entid, needs_update and "UPDATE");
+			requests[id] = CurTime() + ttl
+			RunConsoleCommand("RD_REQUEST_RESOURCE_DATA", "ENT", entid, needs_update and "UPDATE")
 		end
 	end
 	--PrintTable(data)
@@ -553,12 +553,12 @@ end
 
 function RD.GetNetTable(netid)
 	local id = "network_"..tostring(netid)
-	local data, needs_update = rd_cache:get(id);
+	local data, needs_update = rd_cache:get(id)
 	if not data or needs_update then
 		if not requests[id] or requests[id] < CurTime() then
 			--Do (new) request
-			requests[id] = CurTime() + ttl;
-			RunConsoleCommand("RD_REQUEST_RESOURCE_DATA", "NET", netid, needs_update and "UPDATE");
+			requests[id] = CurTime() + ttl
+			RunConsoleCommand("RD_REQUEST_RESOURCE_DATA", "NET", netid, needs_update and "UPDATE")
 		end
 	end
 	return data or {}

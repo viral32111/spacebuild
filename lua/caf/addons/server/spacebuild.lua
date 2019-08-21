@@ -368,8 +368,8 @@ function sb_space.Get()
 	function space:IsSpace()
 		return true
 	end
-	sb_space.instance = space;
-	return space;
+	sb_space.instance = space
+	return space
 end
 
 
@@ -683,7 +683,7 @@ local function Register_Environments()
             --lua_run local e = ents.Create("base_cube_environment") e:SetModel("models/props_lab/huladoll.mdl") e:SetAngles(Angle(0,0,0)) e:SetPos(Vector(0,0,-14472)) e:Spawn() e:CreateEnvironment(Entity(41):GetParent(),15000,1,1,1,289,300,21,0.45,78,0.55,0,"Earth")
         end
         if SB_InSpace == 1 then
-            SB.__Construct();
+            SB.__Construct()
         end
     end)
 end
@@ -754,10 +754,10 @@ function SB.__Construct()
 		CAF.AddHook("think3", SB.PerformEnvironmentCheck)
 		ResetGravity()
 		for k, v in pairs(player.GetAll()) do
-			PlayerInitialSpawn(v);
+			PlayerInitialSpawn(v)
 		end
 		CAF.AddServerTag("SB")
-		status = true;
+		status = true
 		return true
 	end
 	return false, CAF.GetLangVar("Not on a Spacebuild Map!")
@@ -778,8 +778,8 @@ function SB.__Destruct()
 	CAF.RemoveHook("think3", SB.PerformEnvironmentCheck)
 	ResetGravity()
 	CAF.RemoveServerTag("SB")
-	status = false;
-	return true;
+	status = false
+	return true
 end
 
 --[[
@@ -861,13 +861,13 @@ CAF.RegisterAddon("Spacebuild",  SB, "1")
 
 --Thinks Checks
 
---local time_count = 0;
---local time_amount = 0;
+--local time_count = 0
+--local time_amount = 0
 
 function SB.PerformEnvironmentCheck()
 	if (SB_InSpace == 0) then return end
 	--local begintime = CAF.begintime()
-	--local amount = #sb_spawned_entities;
+	--local amount = #sb_spawned_entities
 	for k, ent in ipairs( sb_spawned_entities) do
 		if ent and IsValid(ent) and not ent.IsEnvironment  then
 			SB.PerformEnvironmentCheckOnEnt( ent )
@@ -1211,7 +1211,7 @@ end
 *
 ]]
 function SB.DestroyVolume(name)
-	SB.RemoveVolume(name);
+	SB.RemoveVolume(name)
 end
 
 --[[

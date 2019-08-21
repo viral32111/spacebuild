@@ -5,7 +5,7 @@ function CAFEnts.MakeEnt(tool, ply, Ang, Pos, class, type, sub_type, model, froz
 
     --Admin Check
     if tool.AdminOnly and not ply:IsAdmin() then
-        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_admin_required"), "right", CAF.colors.red, 0.5);
+        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_admin_required"), "right", CAF.colors.red, 0.5)
         return false
     end
 
@@ -13,7 +13,7 @@ function CAFEnts.MakeEnt(tool, ply, Ang, Pos, class, type, sub_type, model, froz
     --Enable Check
     if tool.EnableFunc then
         if not tool.EnableFunc(ply) then
-            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_disabled"), "right", CAF.colors.red, 0.5);
+            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_disabled"), "right", CAF.colors.red, 0.5)
             return
         end
     end
@@ -59,24 +59,24 @@ function CAFEnts.MakeEnt(tool, ply, Ang, Pos, class, type, sub_type, model, froz
     local ent
     --Admin Checks
     if devinfo.group.AdminOnly and not ply:IsAdmin() then
-        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_admin_required"), "right", CAF.colors.red, 0.5);
-        return false;
+        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_admin_required"), "right", CAF.colors.red, 0.5)
+        return false
     end
     if devinfo.AdminOnly and not ply:IsAdmin() then
-        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_model_admin_required"), "right", CAF.colors.red, 0.5);
+        CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_model_admin_required"), "right", CAF.colors.red, 0.5)
         return false
     end
 
     --Enabled Checks
     if devinfo.group.EnableFunc then
         if not devinfo.group.EnableFunc(ply) then
-            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_disabled"), "right", CAF.colors.red, 0.5);
+            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_disabled"), "right", CAF.colors.red, 0.5)
             return
         end
     end
     if devinfo.EnableFunc then
         if not devinfo.EnableFunc(ply) then
-            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_model_disabled"), "right", CAF.colors.red, 0.5);
+            CAF.POPUP(ply, CAF.GetLangVar("caf_stool_entity_model_disabled"), "right", CAF.colors.red, 0.5)
             return
         end
     end

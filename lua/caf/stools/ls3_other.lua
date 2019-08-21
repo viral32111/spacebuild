@@ -18,12 +18,12 @@ CAFToolSetup.SetLang("Life Support Info Screen", "Create a LS Info Screen attach
 
 function TOOL.EnableFunc()
     if not CAF then
-        return false;
+        return false
     end
     if not CAF.GetAddon("Resource Distribution") or not CAF.GetAddon("Resource Distribution").GetStatus() then
-        return false;
+        return false
     end
-    return true;
+    return true
 end
 
 TOOL.ExtraCCVars = {}

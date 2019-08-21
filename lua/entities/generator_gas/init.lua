@@ -184,7 +184,7 @@ function ENT:Pump_Air()
             local sb_resources = { "oxygen", "carbon dioxide", "hydrogen", "nitrogen" }
             local SB = CAF.GetAddon("Spacebuild")
             if SB and SB.GetStatus() and table.HasValue(sb_resources, self.caf.custom.resource) then
-                local usage = ainc;
+                local usage = ainc
                 if self.environment then
                     if self.caf.custom.resource == "oxygen" then
                         usage = self.environment:Convert(0, -1, ainc)

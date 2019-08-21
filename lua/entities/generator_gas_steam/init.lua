@@ -7,7 +7,7 @@ include('shared.lua')
 local Energy_Increment = 100
 local Water_Increment = 10
 local Steam_Increment = 10
-local HeatUpTime = 5;
+local HeatUpTime = 5
 
 function ENT:Initialize()
     self.BaseClass.Initialize(self)

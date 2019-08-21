@@ -18,23 +18,23 @@ local pairs = pairs
 module( "RDNetwork" )
 
 local networks = {}
-local id = 1;
+local id = 1
 
 local list = {}
 list.__index = list
-list.TYPE = "RDNetwork";
+list.TYPE = "RDNetwork"
 
 function list:Init()
-	self.id = id;
-	id = id + 1;
-	networks[self.id] = self;
+	self.id = id
+	id = id + 1
+	networks[self.id] = self
 	self.resources = {}
 	self.entities = {}
-	self.haschanged = false;
-	self.new = true;
-	self.clear = false;
+	self.haschanged = false
+	self.new = true
+	self.clear = false
 	self.connections = {}
-	self.entity = nil;
+	self.entity = nil
 end
 
 --[[
@@ -46,7 +46,7 @@ end
 function Create()
 	tmp = {}
 	setmetatable( tmp, list )
-	tmp:Init();
+	tmp:Init()
 	return tmp
 end
 

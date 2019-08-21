@@ -259,8 +259,8 @@ function ENT:RegisterNonStorageDevice()
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
-		RD.RegisterNonStorageDevice(self);
+		local RD = CAF.GetAddon("Resource Distribution")
+		RD.RegisterNonStorageDevice(self)
 	end
 end
 
@@ -268,7 +268,7 @@ function ENT:AddResource(resource, maxamount, defaultvalue)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.AddResource(self, resource, maxamount, defaultvalue)
 	end
 end
@@ -277,7 +277,7 @@ function ENT:ConsumeResource( resource, amount)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.ConsumeResource(self, resource, amount)
 	end
 end
@@ -286,7 +286,7 @@ function ENT:SupplyResource(resource, amount)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.SupplyResource(self, resource, amount)
 	end
 end
@@ -295,7 +295,7 @@ function ENT:Link(netid)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		RD.Link(self, netid)
 	end
 end
@@ -304,7 +304,7 @@ function ENT:Unlink()
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		RD.Unlink(self)
 	end
 end
@@ -313,8 +313,8 @@ function ENT:GetResourceAmount(resource)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
-		return RD.GetResourceAmount(self, resource);
+		local RD = CAF.GetAddon("Resource Distribution")
+		return RD.GetResourceAmount(self, resource)
 	end
 end
 
@@ -322,7 +322,7 @@ function ENT:GetUnitCapacity(resource)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.GetUnitCapacity(self, resource)
 	end
 end
@@ -331,7 +331,7 @@ function ENT:GetNetworkCapacity(resource)
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.GetNetworkCapacity(self, resource)
 	end
 end
@@ -340,7 +340,7 @@ function ENT:GetEntityTable()
 	if self.caf.custom.rdentitydata then
 	
 	else
-		local RD = CAF.GetAddon("Resource Distribution");
+		local RD = CAF.GetAddon("Resource Distribution")
 		return RD.GetEntityTable(self)
 	end
 end
@@ -492,7 +492,7 @@ function ENT:GetGravity()
 end
 
 function ENT:UpdatePressure(ent)
-	local sb = CAF.GetAddon("Spacebuild");
+	local sb = CAF.GetAddon("Spacebuild")
 	if not ent or sb.Override_PressureDamage > 0 then return end
 	if ent:IsPlayer() and sb.PlayerOverride > 0 then return end
 	if self.sbenvironment.pressure and self.sbenvironment.pressure > 1.5 then
@@ -513,7 +513,7 @@ function ENT:Convert(air1, air2, value)
 	if air1 == air2 then return 0 end
 	if value < 1 then return 0 end
 	if GetConVar("SB_StaticEnvironment"):GetBool() then
-		return value;
+		return value
 		--Don't do anything else anymore
 	end
 	if air1 == -1 then

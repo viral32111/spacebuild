@@ -117,7 +117,7 @@ function ENT:Destruct()
                 end
             end
         end
-        local movetype;
+        local movetype
         for key, found in pairs(ents.FindInSphere(Pos, blastradius)) do
             movetype = found:GetMoveType()
             if (movetype == 2 or movetype == 3 or movetype == 5 or movetype == 6 or movetype == 8 or movetype == 9) then
@@ -136,7 +136,7 @@ function ENT:Destruct()
                     local physobj = found:GetPhysicsObject()
                     local mass = 1
                     if (physobj:IsValid()) then
-                        mass = physobj:GetMass();
+                        mass = physobj:GetMass()
                     end
 
                     if (found:GetMoveType() ~= 6) or not physobj:IsValid() then --if it's not a physics object...

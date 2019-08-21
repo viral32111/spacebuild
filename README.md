@@ -17,6 +17,7 @@ The current changes are as follows: *(All links reference where the code was cha
  * Removed a [version check](https://github.com/spacebuild/spacebuild/blob/master/lua/autorun/server/sv_caf_autostart.lua#L2) which will never occur anymore.
  * Removed unnecessary Life Support entities.
  * Updated Serverside Loading Messages.
-
+ * Removed a whole bunch of unnecessary semicolons.
+ 
 ### Copyright 2009-2016 SB Dev Team
 ###### Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

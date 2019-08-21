@@ -24,11 +24,11 @@ function list:Create( target, weapon, attacker )
 	self.weapon = weapon
 	self.attacker = attacker
 	self.attacks = {}
-	self.piercing = 0;
+	self.piercing = 0
 end
 
 function list:GetTarget()
-	return self.target;
+	return self.target
 end
 
 function list:GetWeaponEntity()
@@ -36,7 +36,7 @@ function list:GetWeaponEntity()
 end
 
 function list:GetAttacker()
-	return self.attacker;
+	return self.attacker
 end
 
 --[[

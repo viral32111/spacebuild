@@ -68,7 +68,7 @@ end
 function ENT:Leak()
     local air = self:GetResourceAmount(self.caf.custom.resource)
     local mul = air / self.MAXRESOURCE
-    local am = math.Round(mul * 1000);
+    local am = math.Round(mul * 1000)
     if (air >= am) then
         self:ConsumeResource(self.caf.custom.resource, am)
         if self.environment then

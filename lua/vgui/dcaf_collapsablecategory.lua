@@ -30,9 +30,9 @@ function PANEL:Init()
     self.Status:SetPos(72, 39)
 
     self.Button = vgui.Create("DButton", self)
-    self.Button:SetPos(72, 56);
+    self.Button:SetPos(72, 56)
 
-    self:SetText("Show More");
+    self:SetText("Show More")
 end
 
 function PANEL:PerformLayout()
@@ -44,26 +44,26 @@ function PANEL:PerformLayout()
     self:SetTall(72)
 end
 
---PANEL.ExtraButtonAction = nil;
+--PANEL.ExtraButtonAction = nil
 --function PANEL:SetExtraButtonAction(actionFunction)
---	self.ExtraButtonAction = actionFunction;
+--	self.ExtraButtonAction = actionFunction
 --end
 
 function PANEL:Setup(name, addon)
-    local status = false;
-    local statustext = "Disabled";
+    local status = false
+    local statustext = "Disabled"
     self.Status:SetTextColor(Color(255, 0, 0, 200))
-    self.Button:SetText("Enable");
+    self.Button:SetText("Enable")
     function self.Button:DoClick()
         RunConsoleCommand("CAF_Addon_Construct", name)
         --if self.ExtraButtonAction then
-        --	pcall(self.ExtraButtonAction);
+        --	pcall(self.ExtraButtonAction)
         --end
     end
 
-    local customstatus = "";
-    local version = "0";
-    local stringversion = "UnSpecified";
+    local customstatus = ""
+    local version = "0"
+    local stringversion = "UnSpecified"
 
     if addon.GetVersion then
         version, stringversion = addon.GetVersion()
@@ -74,11 +74,11 @@ function PANEL:Setup(name, addon)
         if status then
             statustext = "Enabled"
             self.Status:SetTextColor(Color(0, 255, 0, 200))
-            self.Button:SetText("Disable");
+            self.Button:SetText("Disable")
             function self.Button:DoClick()
                 RunConsoleCommand("CAF_Addon_Destruct", name)
                 --if self.ExtraButtonAction then
-                --	pcall(self.ExtraButtonAction);
+                --	pcall(self.ExtraButtonAction)
                 --end
             end
         end
@@ -89,7 +89,7 @@ function PANEL:Setup(name, addon)
     end
 
     self.Name:SetText(name)
-    local statusstring = tostring(statustext);
+    local statusstring = tostring(statustext)
     if customstatus and customstatus ~= "" then
         statusstring = statusstring .. " (" .. tostring(customstatus) .. ")"
     end
@@ -99,7 +99,7 @@ function PANEL:Setup(name, addon)
     if not LocalPlayer():IsAdmin() or (addon.CanChangeStatus and not addon.CanChangeStatus()) then
         self.Button:SetVisible(false)
     end
-    local image = "icon16/application.png";
+    local image = "icon16/application.png"
     if addon.GetDisplayImage then
         image = addon.GetDisplayImage()
     end
@@ -142,7 +142,7 @@ AccessorFunc(PANEL, "m_bDrawBackground", "DrawBackground", FORCE_BOOL)
 AccessorFunc(PANEL, "m_iPadding", "Padding")
 
 function PANEL:Setup(name, addon)
-    self.Header:Setup(name, addon);
+    self.Header:Setup(name, addon)
 end
 
 --[[---------------------------------------------------------
@@ -170,7 +170,7 @@ function PANEL:Think()
 end
 
 --function PANEL:SetExtraButtonAction(actionFunction)
---	self.Header = actionFunction;
+--	self.Header = actionFunction
 --end
 
 --[[---------------------------------------------------------
@@ -251,7 +251,7 @@ end
 ---------------------------------------------------------]]
 function PANEL:OnMousePressed(mcode)
 
-    if (not self:GetParent().OnMousePressed) then return end;
+    if (not self:GetParent().OnMousePressed) then return end
 
     return self:GetParent():OnMousePressed(mcode)
 end

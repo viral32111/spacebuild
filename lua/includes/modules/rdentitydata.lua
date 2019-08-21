@@ -21,17 +21,17 @@ local entities = {}
 
 local list = {}
 list.__index = list
-list.TYPE = "RDEntityData";
+list.TYPE = "RDEntityData"
 
 function list:Init(entity)
-	self.id = entity:EntIndex( );
-	self.entity = entity;
-	self.network = nil;
+	self.id = entity:EntIndex( )
+	self.entity = entity
+	self.network = nil
 	self.resources = {}
-	self.clear = false;
-	self.new = true;
-	self.haschanged = false;
-	entities[entityID] = self;
+	self.clear = false
+	self.new = true
+	self.haschanged = false
+	entities[entityID] = self
 end
 
 --[[
@@ -46,7 +46,7 @@ function Create(entity)
 	end
 	tmp = {}
 	setmetatable( tmp, list )
-	tmp:Init(entity);
+	tmp:Init(entity)
 	return tmp
 end
 

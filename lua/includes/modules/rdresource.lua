@@ -19,20 +19,20 @@ module( "RDNetwork" )
 
 local resources = {}
 
-local id = 1;
+local id = 1
 
 local list = {}
 list.__index = list
-list.TYPE = "RDResource";
+list.TYPE = "RDResource"
 
 function list:Init(resource)
-	self.id = id;
-	id = id + 1;
-	resources[self.id] = self;
-	self.resource = resource;
-	self.value = 0;
-	self.haschanged = false;
-	self.maxvalue = 0;
+	self.id = id
+	id = id + 1
+	resources[self.id] = self
+	self.resource = resource
+	self.value = 0
+	self.haschanged = false
+	self.maxvalue = 0
 end
 
 --[[
@@ -47,7 +47,7 @@ function Create(resource)
 	end
 	tmp = {}
 	setmetatable( tmp, list )
-	tmp:Init(resource);
+	tmp:Init(resource)
 	return tmp
 end
 

@@ -112,7 +112,7 @@ function LS.__Construct()
 	hook.Add( "PlayerSpawnedVehicle", "LS_vehicle_spawn", LS_Reg_Veh )
 	if (SunAngle == nil) then SunAngle = Vector(0,0,-1) end
 	for k, ply in pairs(player.GetAll( )) do
-		LSSpawnFunc( ply );
+		LSSpawnFunc( ply )
 	end
 	local RD = CAF.GetAddon("Resource Distribution")
 	RD.AddProperResourceName("energy", CAF.GetLangVar("Energy"))
@@ -211,12 +211,12 @@ function LS.AddAirRegulator(ent)
 	if ent.GetLSClass and ent:GetLSClass() == "air exchanger" then
 		if table.insert(LS.generators.air, ent) then
 		--table.insert(LS.generators.air, ent)
-		--	Msg("Added Air Exchanger\n");
+		--	Msg("Added Air Exchanger\n")
 			return true
 		end
-		--Msg("Not Added Air Exchanger\n");
+		--Msg("Not Added Air Exchanger\n")
 	end
-	--Msg("Not Added Air Exchanger\n");
+	--Msg("Not Added Air Exchanger\n")
 	return false
 end
 
@@ -224,12 +224,12 @@ function LS.AddTemperatureRegulator(ent)
 	if ent.GetLSClass and ent:GetLSClass() == "temperature exchanger" then
 		if table.insert(LS.generators.temperature, ent) then
 		--table.insert(LS.generators.temperature, ent)
-			--Msg("Added Temp Exchanger\n");
+			--Msg("Added Temp Exchanger\n")
 			return true
 		end
-		--Msg("Not Added temp Exchanger\n");
+		--Msg("Not Added temp Exchanger\n")
 	end
-	--Msg("Not Added temp Exchanger\n");
+	--Msg("Not Added temp Exchanger\n")
 	return false
 end
 
@@ -673,7 +673,7 @@ function Ply:LsCheck()
 end
 
 function Ply:UpdateLSClient()
-	local SB = CAF.GetAddon("Spacebuild");
+	local SB = CAF.GetAddon("Spacebuild")
 	if SB and SB.GetStatus() then
 		umsg.Start("LS_umsg1", self)
 			umsg.Float( self.environment:GetO2Percentage() or -1)

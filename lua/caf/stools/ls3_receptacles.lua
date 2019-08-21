@@ -24,12 +24,12 @@ TOOL.ExtraCCVars = {
 
 function TOOL.EnableFunc()
     if not CAF then
-        return false;
+        return false
     end
     if not CAF.GetAddon("Resource Distribution") or not CAF.GetAddon("Resource Distribution").GetStatus() then
-        return false;
+        return false
     end
-    return true;
+    return true
 end
 
 function TOOL.ExtraCCVarsCP(tool, panel)
@@ -132,7 +132,7 @@ local function gas_tank_func(ent, type, sub_type, devinfo, Extra_Data, ent_extra
     elseif type == "storage_gas_steam" then
         res = "steam"
     end
-    ent.caf.custom.resource = res;
+    ent.caf.custom.resource = res
     CAF.GetAddon("Resource Distribution").AddResource(ent, res, math.Round(4600 * volume_mul))
     ent.MAXRESOURCE = math.Round(4600 * volume_mul)
     local mass = math.Round(base_mass * volume_mul)

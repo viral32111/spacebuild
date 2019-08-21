@@ -20,7 +20,7 @@ local list = {}
 list.__index = list
 
 function list:Create()
-	self.armor = 0;
+	self.armor = 0
 	self.muls = {}
 end
 
@@ -32,7 +32,7 @@ end
 ]]
 function list:setArmorMultiplier(damtype, amount)
 	self.muls[damtype] = amount
-	self.canreceivedamage = true;
+	self.canreceivedamage = true
 end
 
 --[[

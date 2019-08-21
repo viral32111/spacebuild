@@ -1,21 +1,21 @@
 local net = net
 
-local net_pools = {"CAF_Addon_Construct", "CAF_Addon_Destruct", "CAF_Start_true", "CAF_Start_false", "CAF_Addon_POPUP"};
+local net_pools = {"CAF_Addon_Construct", "CAF_Addon_Destruct", "CAF_Start_true", "CAF_Start_false", "CAF_Addon_POPUP"}
 for _, v in pairs(net_pools) do
-    print("Added Network String: " .. v);
+    print("Added Network String: " .. v)
     util.AddNetworkString(v)
 end
 
 -- Variable Declarations
 local CAF2 = {}
-CAF = CAF2;
+CAF = CAF2
 local CAF3 = {}
-CAF2.CAF3 = CAF3;
+CAF2.CAF3 = CAF3
 
-CAF2.StartingUp = false;
+CAF2.StartingUp = false
 
 local DEBUG = true
-CAF3.DEBUG = DEBUG;
+CAF3.DEBUG = DEBUG
 local Addons = {}
 CAF3.Addons = Addons
 
@@ -28,7 +28,7 @@ addonlevel[4] = {}
 addonlevel[5] = {}
 
 local hooks = {}
-CAF3.hooks = hooks;
+CAF3.hooks = hooks
 hooks["think"] = {}
 hooks["think2"] = {}
 hooks["think3"] = {}
@@ -45,9 +45,9 @@ function CAF2.AllowSpawn(type, sub_type, class, model)
 			CAF2.WriteToDebugFile("CAF_Hooks", "TOOL_Allow_Entity_Spawn Error: " .. err .."\n")
 		else
 			if err == true then
-				return true;
+				return true
 			elseif err == false then
-				return false;
+				return false
 			end
 		end
 	end
@@ -63,9 +63,9 @@ local function ErrorOffStuff(String)
 end
 
 AddCSLuaFile("autorun/client/cl_caf_autostart.lua")
-CAF2.CAF3 = CAF3;
+CAF2.CAF3 = CAF3
 include("caf/core/shared/sh_general_caf.lua")
-CAF2.CAF3 = nil;
+CAF2.CAF3 = nil
 
 if (not sql.TableExists("CAF_AddonStatus")) then
 
@@ -99,7 +99,7 @@ local function LoadAddonStatus( addon, defaultstatus )
 	local id = sql.SQLStr(addon)
 	local data = sql.Query("SELECT * FROM CAF_AddonStatus WHERE id = "..id..";")
 	if defaultstatus == nil then
-		defaultstatus = 1;
+		defaultstatus = 1
 	else
 		if defaultstatus then
 			defaultstatus = 1
@@ -112,7 +112,7 @@ local function LoadAddonStatus( addon, defaultstatus )
 	else
 		return util.tobool(data[1]["status"])
 	end
-	return util.tobool(defaultstatus);
+	return util.tobool(defaultstatus)
 end
 
 local function OnEntitySpawn(ent , enttype , ply)
@@ -257,7 +257,7 @@ end
 		This function loads all the Custom Addons on Startup
 ]]
 function CAF2.Start()
-	Msg("Starting CAF Addons\n");
+	Msg("Starting CAF Addons\n")
 	CAF2.StartingUp = true
 	net.Start("CAF_Start_true")
 	net.Broadcast()
@@ -384,7 +384,7 @@ local function AddonDestruct(ply, com, args)
 end
 concommand.Add( "CAF_Addon_Destruct", AddonDestruct ) 
 
-local kickgarry = false;
+local kickgarry = false
 --[[
 	This function will update the Client with all active addons
 ]]
@@ -409,7 +409,7 @@ local oldcreate = ents.Create
 ents.Create = function(class)
 	local ent = oldcreate(class)
 	timer.Simple( 0.1, function() OnEntitySpawn( ent, "SENT" ) end)
-	return ent;
+	return ent
 end
 
 --msg, location, color, displaytime

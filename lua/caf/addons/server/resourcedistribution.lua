@@ -1,6 +1,6 @@
 local RD = {}
-local nettable = {};
-local ent_table = {};
+local nettable = {}
+local ent_table = {}
 local resourcenames = {}
 local resources = {}
 
@@ -16,7 +16,7 @@ for i=1,3 do
 end
 util.PrecacheSound( "physics/metal/metal_box_impact_soft2.wav" )
 
-local nextnetid = 1;
+local nextnetid = 1
 
 --These functions send all needed info the client
 
@@ -207,11 +207,11 @@ local function WriteBool(bool)
 end
 
 local function WriteShort(short)
-    return net.WriteInt(short, 16);
+    return net.WriteInt(short, 16)
 end
 
 local function WriteLong(long)
-    return net.WriteInt(long, 32);
+    return net.WriteInt(long, 32)
 end
 
 util.AddNetworkString("RD_Entity_Data")
@@ -221,7 +221,7 @@ local function sendEntityData(ply, entid, rddata)
     WriteBool(false) --Update
     WriteShort(rddata.network) --send network used in entity
 		
-		local nr_of_resources = table.Count(rddata.resources);
+		local nr_of_resources = table.Count(rddata.resources)
     WriteShort(nr_of_resources) --How many resources are going to be send?
 		if nr_of_resources > 0 then
 			for l, w in pairs(rddata.resources) do
@@ -245,7 +245,7 @@ local function sendNetworkData(ply, netid, rddata)
     WriteShort(netid) --send key to update
     WriteBool(false) --Update
 		
-		local nr_of_resources = table.Count(rddata.resources);
+		local nr_of_resources = table.Count(rddata.resources)
     WriteShort(nr_of_resources) --How many resources are going to be send?
 		if nr_of_resources > 0 then
 			for l, w in pairs(rddata.resources) do
@@ -257,7 +257,7 @@ local function sendNetworkData(ply, netid, rddata)
 			end
 		end
 		
-		local nr_of_cons = #rddata.cons;
+		local nr_of_cons = #rddata.cons
     WriteShort(nr_of_cons) --How many connections are going to be send?
 		if nr_of_cons > 0 then
 			for l, w in pairs(rddata.cons) do
@@ -292,7 +292,7 @@ local function RequestResourceData(ply, com, args)
 	local data, tmpdata
 	
 	if args[1] == "ENT" then
-		data = rd_cache:get("entity_"..args[2]);
+		data = rd_cache:get("entity_"..args[2])
 		if not data then
 			tmpdata = ent_table[tonumber(args[2])] 
 			if not tmpdata then ply:ChatPrint("RD BUG: INVALID ENTID") return end
@@ -334,7 +334,7 @@ local function RequestResourceData(ply, com, args)
         
 		sendEntityData(ply, tonumber(args[2]), data)
 	elseif args[1] == "NET" then	
-		data = rd_cache:get("network_"..args[2]);
+		data = rd_cache:get("network_"..args[2])
 		if not data then
 			tmpdata = nettable[tonumber(args[2])] 
 			if not tmpdata then ply:ChatPrint("RD BUG: INVALID NETID") return end
@@ -364,7 +364,7 @@ concommand.Add( "RD_REQUEST_RESOURCE_DATA", RequestResourceData )
 local function ClearEntities()
 	if table.Count(ent_table) ~= 0 then
 		for k, v in pairs(ent_table) do
-			local ent = ents.GetByIndex( k );
+			local ent = ents.GetByIndex( k )
 			if ent and IsValid(ent) and ent ~= NULL then
 				ent:Remove()
 			end
@@ -391,8 +391,8 @@ function RD.__Construct()
 	nextnetid = 1
 	ClearNets()
 	ClearEntities()
-	nettable = {};
-	ent_table = {};
+	nettable = {}
+	ent_table = {}
 	CAF.AddHook("think3", UpdateNetworksAndEntities)
 	hook.Add( "PlayerInitialSpawn", "RD_Initial_Spawn", RD_Initial_Spawn )
 	for k, ply in pairs(player.GetAll( )) do
@@ -410,8 +410,8 @@ function RD.__Destruct()
 	nextnetid = 1
 	ClearNets()
 	ClearEntities()
-	nettable = {};
-	ent_table = {};
+	nettable = {}
+	ent_table = {}
 	CAF.RemoveHook("think3", UpdateNetworksAndEntities)
 	hook.Remove( "PlayerInitialSpawn", "RD_Initial_Spawn")
 	CAF.RemoveServerTag("RD")
@@ -469,7 +469,7 @@ function RD.RemoveRDEntity(ent)
 	if ent.IsNode then
 		--RemoveNetWork(ent.netid)
 		--nettable[ent.netid].clear = true
-		nettable[ent.netid] = nil;
+		nettable[ent.netid] = nil
 	elseif ent_table[ent:EntIndex()] then
 		--RemoveEnt(ent:EntIndex())
 		--ent_table[ent:EntIndex()].clear = true
@@ -488,21 +488,21 @@ function RD.RegisterNonStorageDevice(ent)
 	if not IsValid( ent ) then return false, "Not a valid entity" end
 	if not ent_table[ent:EntIndex( )] then
 		ent_table[ent:EntIndex()] = {}
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		index.resources = {}
-		index.network = 0;
+		index.network = 0
 		index.clear = false
-		index.haschanged = false;
-		index.new = true;
+		index.haschanged = false
+		index.new = true
 		index.ent = ent
 	elseif ent_table[ent:EntIndex( )].ent ~= ent then
 		ent_table[ent:EntIndex()] = {}
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		index.resources = {}
-		index.network = 0;
+		index.network = 0
 		index.clear = false
-		index.haschanged = false;
-		index.new = true;
+		index.haschanged = false
+		index.new = true
 		index.ent = ent
 	end
 end
@@ -524,12 +524,12 @@ function RD.AddResource(ent, resource, maxamount, defaultvalue)
 		table.insert(resources, resource)
 	end
 	if ent_table[ent:EntIndex( )] and ent_table[ent:EntIndex( )].ent == ent then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.resources[resource] then
 			if index.network ~= 0 then
-				nettable[index.network].resources[resource].maxvalue = nettable[index.network].resources[resource].maxvalue - index.resources[resource].maxvalue;
+				nettable[index.network].resources[resource].maxvalue = nettable[index.network].resources[resource].maxvalue - index.resources[resource].maxvalue
 				if nettable[index.network].resources[resource].value > nettable[index.network].resources[resource].maxvalue then
-					nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].maxvalue;
+					nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].maxvalue
 				end
 			end
 		else
@@ -539,25 +539,25 @@ function RD.AddResource(ent, resource, maxamount, defaultvalue)
 		index.resources[resource].value = defaultvalue
 		index.resources[resource].haschanged = true
 		if index.network ~= 0 then
-			nettable[index.network].resources[resource].maxvalue = nettable[index.network].resources[resource].maxvalue + maxamount;
-			nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].value + defaultvalue;
+			nettable[index.network].resources[resource].maxvalue = nettable[index.network].resources[resource].maxvalue + maxamount
+			nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].value + defaultvalue
 			if nettable[index.network].resources[resource].value > nettable[index.network].resources[resource].maxvalue then
-				nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].maxvalue;
+				nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].maxvalue
 				nettable[index.network].resources[resource].haschanged = true
 			end
 		end
-		index.haschanged = true;
+		index.haschanged = true
 	else
 		 ent_table[ent:EntIndex()] = {}
-		 local index = ent_table[ent:EntIndex( )];
+		 local index = ent_table[ent:EntIndex( )]
 		 index.resources = {}
 		 index.resources[resource] = {}
-		 index.resources[resource].maxvalue = maxamount;
-		 index.resources[resource].value = defaultvalue;
-		 index.network = 0;
+		 index.resources[resource].maxvalue = maxamount
+		 index.resources[resource].value = defaultvalue
+		 index.network = 0
 		 index.clear = false
-		 index.haschanged = false;
-		 index.new = true;
+		 index.haschanged = false
+		 index.new = true
 		 index.ent = ent
 	end
 	return true
@@ -614,7 +614,7 @@ function RD.ConsumeNetResource(netid, resource, amount)
 	if not resource then return 0, "No resource given" end
 	if not amount then return 0, "No amount given" end
 	local origamount = amount
-	local consumed = 0;
+	local consumed = 0
 	local index = {}
 	index.network = netid
 	if nettable[index.network] and nettable[index.network].resources and nettable[index.network].resources[resource]  then
@@ -655,7 +655,7 @@ function RD.ConsumeNetResource(netid, resource, amount)
 							end
 							consumed = consumed + amount
 							if (consumed >= origamount) then
-								break;
+								break
 							end
 						end
 					end
@@ -679,9 +679,9 @@ function RD.ConsumeResource(ent, resource, amount)
 	if not resource then return 0, "No resource given" end
 	if not amount then return 0, "No amount given" end
 	local origamount = amount
-	local consumed = 0;
+	local consumed = 0
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.network == 0 then
 			if index.resources[resource] then
 				if index.resources[resource].maxvalue > 0 then
@@ -695,14 +695,14 @@ function RD.ConsumeResource(ent, resource, amount)
 						index.resources[resource].haschanged = true
 						index.haschanged = true
 					end
-					consumed = amount;
+					consumed = amount
 				end
 			end
 		else
 			consumed = RD.ConsumeNetResource(index.network, resource, amount)
 		end
 	end
-	return consumed;
+	return consumed
 end
 
 --[[
@@ -725,7 +725,7 @@ function RD.SupplyNetResource(netid, resource, amount)
 	if nettable[index.network] and nettable[index.network].resources and nettable[index.network].resources[resource]  then
 		if nettable[index.network].resources[resource].maxvalue > nettable[index.network].resources[resource].value + amount then
 			nettable[index.network].resources[resource].value = nettable[index.network].resources[resource].value + amount
-			amount = 0;
+			amount = 0
 			nettable[index.network].haschanged = true
 			nettable[index.network].resources[resource].haschanged = true
 		elseif nettable[index.network].resources[resource].maxvalue > nettable[index.network].resources[resource].value then
@@ -744,7 +744,7 @@ function RD.SupplyNetResource(netid, resource, amount)
 					if nettable[v] and nettable[v].resources and nettable[v].resources[resource]  then
 						if nettable[v].resources[resource].maxvalue > nettable[v].resources[resource].value + amount then
 							nettable[v].resources[resource].value = nettable[v].resources[resource].value + amount
-							amount = 0;
+							amount = 0
 							nettable[v].haschanged = true
 							nettable[v].resources[resource].haschanged = true
 						elseif nettable[v].resources[resource].maxvalue > nettable[v].resources[resource].value then
@@ -777,9 +777,9 @@ function RD.SupplyResource(ent, resource, amount)
 	if not amount then return 0, "No amount given" end
 	if not IsValid( ent ) then return amount, "Not a valid entity" end
 	if not resource then return amount, "No resource given" end
-	local left = 0;
+	local left = 0
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.network == 0 then
 			if index.resources[resource] then
 				if index.resources[resource].maxvalue > index.resources[resource].value + amount then
@@ -793,13 +793,13 @@ function RD.SupplyResource(ent, resource, amount)
 					index.resources[resource].haschanged = true
 					index.haschanged = true
 				end
-				left = amount;
+				left = amount
 			end
 		else
 			left = RD.SupplyNetResource(index.network, resource, amount)
 		end
 	end
-	return left;
+	return left
 end
 
 --[[
@@ -1012,21 +1012,21 @@ local function MySaveFunction( save )
 end
 
 local function MyRestoreFunction( restore )
-	print("Calling RD Restore method");
+	print("Calling RD Restore method")
 	local data = saverestore.ReadTable( restore )
 	PrintTable(data)
-	nettable = data.net;
-	ent_table = data.ents;
+	nettable = data.net
+	ent_table = data.ents
 	for k, v in pairs(nettable) do -- needed?
-		v.haschanged = true;
-		v.new = true;
+		v.haschanged = true
+		v.new = true
 	end
 	for k, v in pairs(ent_table) do -- needed?
-		v.haschanged = true;
-		v.new = true;
+		v.haschanged = true
+		v.new = true
 	end
-	resourcenames = data.res_names;
-	resources = data.res;
+	resourcenames = data.res_names
+	resources = data.res
 end
 saverestore.AddSaveHook( "caf_rd_save", MySaveFunction )
 saverestore.AddRestoreHook( "caf_rd_save", MyRestoreFunction )
@@ -1245,7 +1245,7 @@ function RD.GetResourceAmount(ent, resource, sumconnectednets)
 	local amount = 0
 	sumconnectednets = sumconnectednets or (sumconnectednets == nil)
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.network == 0 then
 			if index.resources[resource] then
 				amount = index.resources[resource].value
@@ -1262,7 +1262,7 @@ function RD.GetUnitCapacity(ent, resource)
 	if not resource then return 0, "No resource given" end
 	local amount = 0
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.resources[resource] then
 			amount = index.resources[resource].maxvalue
 		end
@@ -1297,7 +1297,7 @@ function RD.GetNetworkCapacity(ent, resource, sumconnectednets)
 	local amount = 0
 	sumconnectednets = sumconnectednets or (sumconnectednets == nil)
 	if ent_table[ent:EntIndex( )] then
-		local index = ent_table[ent:EntIndex( )];
+		local index = ent_table[ent:EntIndex( )]
 		if index.network == 0 then
 			if index.resources[resource] then
 				amount = index.resources[resource].maxvalue

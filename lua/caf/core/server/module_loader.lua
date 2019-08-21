@@ -16,7 +16,7 @@ require("cache")
 --[[
 local c = cache.create(20, 1) --20 items max, 1 second ttl
 
-local item = 0;
+local item = 0
 
 timer.Create( "test_timer", 0.5, 3, function()
 	local e = item
@@ -25,7 +25,7 @@ timer.Create( "test_timer", 0.5, 3, function()
 		--print("adding", i)
 		c:add(i, i)
 	end
-	PrintTable(c:getList());
+	PrintTable(c:getList())
 end )
 ]]
 

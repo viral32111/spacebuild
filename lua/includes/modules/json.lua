@@ -187,12 +187,12 @@ function JsonWriter:WriteTable(t)
             end
         end
     else
-        local first = true;
+        local first = true
         for k, v in pairs(t) do
             if not first then
                 self:Append(',')
             end
-            first = false;
+            first = false
             self:ParseString(k)
             self:Append(':')
             self:Write(v)
@@ -262,7 +262,7 @@ function JsonReader:New(s)
     o.reader = StringReader:New(s)
     setmetatable(o, self)
     self.__index = self
-    return o;
+    return o
 end
 
 function JsonReader:Read()
@@ -400,7 +400,7 @@ function JsonReader:ReadArray()
     assert(self:Next() == '[')
     local done = false
     if self:Peek() == ']' then
-        done = true;
+        done = true
     end
     while not done do
         local item = self:Read()

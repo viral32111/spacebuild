@@ -1,4 +1,4 @@
-local gmod_version_required = 145;
+local gmod_version_required = 145
 if ( VERSION < gmod_version_required ) then
 	error("SB CORE: Your gmod is out of date: found version ", VERSION, "required ", gmod_version_required)
 end
@@ -7,10 +7,10 @@ local net = net
 
 --Variable Declarations
 local CAF2 = {}
-CAF = CAF2;
+CAF = CAF2
 local CAF3 = {}
-CAF2.StartingUp = false;
-CAF2.HasInternet = false;
+CAF2.StartingUp = false
+CAF2.HasInternet = false
 CAF2.InternetEnabled = true --Change this to false if you crash when CAF2 loads clientside
 
 
@@ -20,15 +20,15 @@ surface.CreateFont( "GModCAFNotify", {font = "verdana", size = 15, weight = 600}
 --nederlands, english
 
 local DEBUG = true
-CAF3.DEBUG = DEBUG;
+CAF3.DEBUG = DEBUG
 local Addons = {}
 CAF3.Addons = Addons
 
 --Derma stuff
-local MainInfoMenuData = nil;
---local MainStatusMenuData = nil;
---local TopFrame = nil;
---local TopFrameHasText = false;
+local MainInfoMenuData = nil
+--local MainStatusMenuData = nil
+--local TopFrame = nil
+--local TopFrameHasText = false
 --local TopLabel = nil
 --End Derma stuff
 
@@ -41,7 +41,7 @@ addonlevel[4] = {}
 addonlevel[5] = {}
 
 local hooks = {}
-CAF3.hooks = hooks;
+CAF3.hooks = hooks
 hooks["think"] = {}
 hooks["think2"] = {}
 hooks["think3"] = {}
@@ -56,9 +56,9 @@ local function ErrorOffStuff(String)
 	Msg(tostring(String).."\n")
 end
 
-CAF2.CAF3 = CAF3;
+CAF2.CAF3 = CAF3
 include("caf/core/shared/sh_general_caf.lua")
-CAF2.CAF3 = nil;
+CAF2.CAF3 = nil
 
 -- Synchronize language with gmod interface
 CAF2.SaveVar("CAF_LANGUAGE", GetConVar("gmod_language"):GetString())
@@ -66,15 +66,15 @@ CAF2.SaveVar("CAF_LANGUAGE", GetConVar("gmod_language"):GetString())
 local function OnAddonDestruct(name)
 	if not name then return end
 	if(CAF2.GetAddonStatus(name)) then
-		local ok, err = pcall(Addons[name].__Destruct);
+		local ok, err = pcall(Addons[name].__Destruct)
 		if not ok then
 			CAF2.WriteToDebugFile("CAF_Destruct", "Couldn't call destructor for "..name .. " error: " .. err .."\n")
-			AddPopup(CAF.GetLangVar("Error unloading Addon")..": " .. CAF.GetLangVar(name), "top", CAF2.colors.red);
+			AddPopup(CAF.GetLangVar("Error unloading Addon")..": " .. CAF.GetLangVar(name), "top", CAF2.colors.red)
 		else
 			if err then
-				AddPopup(CAF.GetLangVar("Addon")..": " .. CAF.GetLangVar(name) .. " "..CAF.GetLangVar("got disabled"),"top", CAF2.colors.green);
+				AddPopup(CAF.GetLangVar("Addon")..": " .. CAF.GetLangVar(name) .. " "..CAF.GetLangVar("got disabled"),"top", CAF2.colors.green)
 			else
-				AddPopup(CAF.GetLangVar("An error occured when trying to disable Addon")..": " .. CAF.GetLangVar(name),"top", CAF2.colors.red);
+				AddPopup(CAF.GetLangVar("An error occured when trying to disable Addon")..": " .. CAF.GetLangVar(name),"top", CAF2.colors.red)
 			end
 		end
 	end
@@ -92,13 +92,13 @@ local function OnAddonConstruct(name)
 	if not name then return end
 	if(not CAF2.GetAddonStatus(name)) then
 		if Addons[name] then
-			local test, err = pcall(Addons[name].__Construct);
+			local test, err = pcall(Addons[name].__Construct)
 			if not test then
 				CAF2.WriteToDebugFile("CAF_Construct", "Couldn't call constructor for "..name .. " error: " .. err .."\n")
-				AddPopup(CAF.GetLangVar("Error loading Addon")..": " .. CAF.GetLangVar(name), "top", CAF2.colors.red);
+				AddPopup(CAF.GetLangVar("Error loading Addon")..": " .. CAF.GetLangVar(name), "top", CAF2.colors.red)
 			else
 				if not err then
-					AddPopup(CAF.GetLangVar("An error occured when trying to enable Addon")..": " .. CAF.GetLangVar(name),"top", CAF2.colors.red);
+					AddPopup(CAF.GetLangVar("An error occured when trying to enable Addon")..": " .. CAF.GetLangVar(name),"top", CAF2.colors.red)
 				end
 			end
 		end
@@ -148,24 +148,24 @@ end
 function CAF2.ConstructAddon(len, client)
     local name = net.ReadString()
     OnAddonConstruct(name)
-    --RunConsoleCommand("Main_CAF_Menu");
+    --RunConsoleCommand("Main_CAF_Menu")
 end
 net.Receive("CAF_Addon_Construct", CAF2.ConstructAddon)
 
 function CAF2.DestructAddon(len, client)
 	local name = net.ReadString()
 	OnAddonDestruct(name)
-	--RunConsoleCommand("Main_CAF_Menu");
+	--RunConsoleCommand("Main_CAF_Menu")
 end
 net.Receive("CAF_Addon_Destruct", CAF2.DestructAddon)
 
 function CAF2.Start(len, client)
-	CAF2.StartingUp = true;
+	CAF2.StartingUp = true
 end
 net.Receive("CAF_Start_true", CAF2.Start)
 
 function CAF2.endStart(len, client)
-	CAF2.StartingUp = false;
+	CAF2.StartingUp = false
 end
 net.Receive("CAF_Start_false", CAF2.endStart)
 
@@ -185,8 +185,8 @@ local function DrawPopups()
 			if width == nil or height == nil then return end
 			width = width + 16
 			height = height + 16
-			local left = (ScrW()/2)- (width/2);
-			local top = 0;
+			local left = (ScrW()/2)- (width/2)
+			local top = 0
 			draw.RoundedBox( 4, left-1 , top, width+2, height+2, obj.color)
 			draw.RoundedBox( 4, left , top+1, width, height, Color(0, 0, 0, 150))
 			draw.DrawText(obj.message,	Font, left + 8, top + 9, obj.color, 0 )
@@ -199,7 +199,7 @@ local function DrawPopups()
 			width = width + 16
 			height = height + 16
 			local left = 0
-			local top = ScrH() * 2/3;
+			local top = ScrH() * 2/3
 			draw.RoundedBox( 4, left , top-1, width+2, height+2, obj.color)
 			draw.RoundedBox( 4, left+1 , top, width, height, Color(0, 0, 0, 150))
 			draw.DrawText(obj.message,	Font, left + 9, top + 8, obj.color, 0 )
@@ -211,8 +211,8 @@ local function DrawPopups()
 			if width == nil or height == nil then return end
 			width = width + 16
 			height = height + 16
-			local left = ScrW()- width;
-			local top = ScrH() * 2/3;
+			local left = ScrW()- width
+			local top = ScrH() * 2/3
 			draw.RoundedBox( 4, left-1 , top-1, width + 2, height + 2, obj.color)
 			draw.RoundedBox( 4, left , top, width, height, Color(0, 0, 0, 150))
 			draw.DrawText(obj.message,	Font, left + 8, top + 8, obj.color, 0 )
@@ -224,7 +224,7 @@ local function DrawPopups()
 			if width == nil or height == nil then return end
 			width = width + 16
 			height = height + 16
-			local left = (ScrW()/2)- (width/2);
+			local left = (ScrW()/2)- (width/2)
 			local top = ScrH() - height
 			draw.RoundedBox( 4, left-1 , top-2, width+2, height+2, obj.color)
 			draw.RoundedBox( 4, left , top - 1, width, height, Color(0, 0, 0, 150))
@@ -235,19 +235,19 @@ end
 hook.Add("HUDPaint", "CAF_Core_POPUPS", DrawPopups)
 
 local function MessageOfTheDay()
-	return "Welcome to CAF\nYou are using version "..CAF2.version;
+	return "Welcome to CAF\nYou are using version "..CAF2.version
 end
 
 --local function ShowNextTopMessage()
 local function ShowNextPopupMessage()
-	local ply = LocalPlayer();
+	local ply = LocalPlayer()
 	local locations = {"top", "left", "right", "bottom"};	
 	for k, v in pairs(locations) do
 		if displaypopups[v] == nil and popups[v] and table.Count(popups[v]) > 0 then
-			local obj = popups[v][1];
-			table.remove(popups[v], 1);
-			displaypopups[v] = obj;
-			timer.Simple(obj.time, function() ClearPopup(obj) end);
+			local obj = popups[v][1]
+			table.remove(popups[v], 1)
+			displaypopups[v] = obj
+			timer.Simple(obj.time, function() ClearPopup(obj) end)
 		end
 	end
 end
@@ -255,10 +255,10 @@ end
 --function ClearTopTextMessage(obj)
 function ClearPopup(obj)
 	if obj then
-		displaypopups[obj.location] = nil;
+		displaypopups[obj.location] = nil
 	end
 	if table.Count(popups[obj.location]) > 0 then
-		ShowNextPopupMessage();
+		ShowNextPopupMessage()
 	end
 end
 
@@ -267,26 +267,26 @@ local MessageLog = {}
 --function AddTopInfoMessage(message)
 function AddPopup(message, location, color, displaytime)
 	local obj = {}
-	local allowedlocations = {"top", "left", "right", "bottom"};
-	location = location or "top";
+	local allowedlocations = {"top", "left", "right", "bottom"}
+	location = location or "top"
 	if not table.HasValue(allowedlocations, location) then
 		location = "top"
 	end
-	obj.message = message or "Corrupt Message";
+	obj.message = message or "Corrupt Message"
 	obj.location = location or "top"
-	obj.time = displaytime or 1;
-	obj.color = color or CAF2.colors.white;
+	obj.time = displaytime or 1
+	obj.color = color or CAF2.colors.white
 	if not popups[location] then
 		popups[location] = {}
 	end
-	table.insert(popups[location], obj);
-	table.insert(MessageLog, obj);
-	ShowNextPopupMessage();
+	table.insert(popups[location], obj)
+	table.insert(MessageLog, obj)
+	ShowNextPopupMessage()
 end
 
 function CAF2.POPUP(msg, location, color, displaytime)
 	if msg then
-		AddPopup(msg, location, color, displaytime);
+		AddPopup(msg, location, color, displaytime)
 	end
 end
 
@@ -298,8 +298,8 @@ local function ProccessMessage(len, client)
 	local b = net.ReadUInt( 8 )
 	local a = net.ReadUInt( 8 )
 	local displaytime = net.ReadUInt( 16 )
-	local color = Color(r, g, b, a);
-	CAF2.POPUP(msg, location, color, displaytime);
+	local color = Color(r, g, b, a)
+	CAF2.POPUP(msg, location, color, displaytime)
 end
 net.Receive("CAF_Addon_POPUP", ProccessMessage)
 

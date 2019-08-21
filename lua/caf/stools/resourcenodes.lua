@@ -50,7 +50,7 @@ local function link_in_range(ent, range)
 end
 
 local function resource_node_func(ent,type,sub_type,devinfo,Extra_Data,ent_extras)
-	MsgAll("Trying to Spawn Resource Node: "..tostring(type).."\n");
+	MsgAll("Trying to Spawn Resource Node: "..tostring(type).."\n")
 	local volume_mul = 1 --Change to be 0 by default later on
 	local base_volume = 2958
 	local base_mass = 20

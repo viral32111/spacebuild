@@ -89,7 +89,7 @@ local function SetPumpName(ply, com, args)
 	if not ent or not ent.IsPump then return end
 	local oldname = ent:GetPumpName()
 	ent:SetPumpName(name)
-	ply:ChatPrint("Changed name for pump <"..tostring(oldname).."> to <"..name..">");
+	ply:ChatPrint("Changed name for pump <"..tostring(oldname).."> to <"..name..">")
 end
 concommand.Add( "SetPumpName", SetPumpName)
 
@@ -146,16 +146,16 @@ function ENT:Initialize()
 	else
 		self.Inputs = {{Name="On"},{Name="Disconnect"},{Name="ConnectID"},{Name="Connect"}}
 	end
-	self:SetNetworkedString("name", "test");
-	self:SetPumpName("Pump_"..tostring(self:EntIndex()));
+	self:SetNetworkedString("name", "test")
+	self:SetPumpName("Pump_"..tostring(self:EntIndex()))
 end
 
 function ENT:GetPumpName()
-	return self:GetNetworkedString("name");
+	return self:GetNetworkedString("name")
 end
 
 function ENT:SetPumpName(name)
-	self:SetNetworkedString("name", name);
+	self:SetNetworkedString("name", name)
 end
 
 function ENT:SetNetwork(netid)

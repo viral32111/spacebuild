@@ -5,7 +5,7 @@
 		Author(s): SnakeSVx
 		Website: http://www.snakesvx.net
 
-		Licensed under the Apache License, Version 2.0 (the "License");
+		Licensed under the Apache License, Version 2.0 (the "License")
 		you may not use this file except in compliance with the License.
 		You may obtain a copy of the License at
 
@@ -34,10 +34,10 @@ local list = {}
 list.__index = list
 list.type = "cache"
 
-local time;
-local index;
+local time
+local index
 local function removeOldData(cache)
-    time = CurTime();
+    time = CurTime()
     if cache.contents then
         for k, v in pairs(cache.contents) do
             if v.ttl < time then
@@ -47,49 +47,49 @@ local function removeOldData(cache)
     end
 end
 
-local rdata;
+local rdata
 function list:remove(key)
     if key ~= nil and self.contents[key] then
-        rdata = self.contents[key];
+        rdata = self.contents[key]
         self.contents[key] = nil
-        return rdata.data;
+        return rdata.data
     end
-    return nil;
+    return nil
 end
 
 function list:create(ttl, remove) --#max amount of elements in the cache table, Time to Live in seconds
-    self.ttl = ttl;
+    self.ttl = ttl
     self.contents = {}
     self.should_remove = remove
 end
 
 function list:add(key, data)
     self.contents[key] = { ttl = CurTime() + self.ttl, data = data }
-    return true;
+    return true
 end
 
 function list:update(key)
-    self.contents[key].ttl = CurTime() + self.ttl;
+    self.contents[key].ttl = CurTime() + self.ttl
 end
 
 function list:get(key)
-    local out_of_date = false;
+    local out_of_date = false
     if self.contents[key] then
-        time = CurTime();
+        time = CurTime()
         if self.contents[key].ttl < time then
             if self.should_remove then
                 self:remove(key)
             end
-            out_of_date = true;
+            out_of_date = true
         end
     end
     if self.contents[key] then
-        return self.contents[key].data, out_of_date;
+        return self.contents[key].data, out_of_date
     end
-    return nil, true;
+    return nil, true
 end
 
-local id = 0;
+local id = 0
 
 function create(ttl, remove)
     if not ttl or tonumber(ttl) <= 0 then ttl = 1 end
@@ -99,7 +99,7 @@ function create(ttl, remove)
     timer.Create("caf_cache_timer_" .. tostring(id), ttl * 1000, 0, function()
         removeOldData(tmp)
     end)
-    id = id + 1;
+    id = id + 1
     return tmp
 end
 
@@ -109,7 +109,7 @@ end
 
 --Debug
 function list:getList()
-    return self.contents;
+    return self.contents
 end
 
 
