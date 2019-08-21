@@ -229,10 +229,6 @@ local function DrawPopups()
 end
 hook.Add("HUDPaint", "CAF_Core_POPUPS", DrawPopups)
 
-local function MessageOfTheDay()
-	return "Welcome to CAF\nYou are using version "..CAF2.version
-end
-
 --local function ShowNextTopMessage()
 local function ShowNextPopupMessage()
 	local ply = LocalPlayer()
